@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 class TestClass3 {
 
-	LibraryManagement lm = new LibraryManagement();
+	SoftwareManagement sm = new SoftwareManagement();
 	
 	@Test
 	void testCase1() throws InputException, DatabaseException{
 		
-		assertEquals("Reservation made, Reservation# 56690", lm.reserveOutOfStock(167934082, 4672895719, 15561, "abc12@uwindsor.ca"));
+		assertEquals("Reservation made, Reservation# 56690", sm.reserveOutOfStock(167934082, 4672895719, 15561, "abc12@uwindsor.ca"));
 	}
 	
 	@Test
@@ -29,7 +29,7 @@ class TestClass3 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> lm.reserveOutOfStock(5, 467985719, 15781, "abc12@uwindsor.ca"));
+		           () -> sm.reserveOutOfStock(5, 467985719, 15781, "abc12@uwindsor.ca"));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
@@ -39,7 +39,7 @@ class TestClass3 {
 		
 		DatabaseException thrown = assertThrows(
 				DatabaseException.class,
-		           () -> lm.reserveOutOfStock(167937082, 4672235719, 12181, "abc12@uwindsor.ca"));
+		           () -> sm.reserveOutOfStock(167937082, 4672235719, 12181, "abc12@uwindsor.ca"));
 
 		    assertTrue(thrown.getMessage().contains("Input Not Found"));
 	}
@@ -49,7 +49,7 @@ class TestClass3 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> lm.reserveOutOfStock(167937154, 4672235345, 16475, "abcd@gmail.com"));
+		           () -> sm.reserveOutOfStock(167937154, 4672235345, 16475, "abcd@gmail.com"));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
