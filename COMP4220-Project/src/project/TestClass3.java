@@ -11,7 +11,7 @@ class TestClass3 {
 	@Test
 	void testCase1() throws InputException, DatabaseException{
 		
-		assertEquals(“Reservation made, Reservation# 56690”, lm.reserveOutOfStock(167934082, 4672895719, 15561, "abc12@uwindsor.ca"));
+		assertEquals("Reservation made, Reservation# 56690", lm.reserveOutOfStock(167934082, 4672895719, 15561, "abc12@uwindsor.ca"));
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ class TestClass3 {
 				DatabaseException.class,
 		           () -> lm.reserveOutOfStock(167937082, 4672235719, 12181, "abc12@uwindsor.ca"));
 
-		    assertTrue(thrown.getMessage().contains("Student Number Not Found"));
+		    assertTrue(thrown.getMessage().contains("Input Not Found"));
 	}
 	
 	@Test

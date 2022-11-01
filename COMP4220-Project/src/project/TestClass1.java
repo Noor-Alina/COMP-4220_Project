@@ -13,7 +13,7 @@ class TestClass1 {
 	@Test
 	void testCase1() throws InputException, DatabaseException{
 		
-		assertEquals("order placed, Order#56690", lm.placeOrder(167934082, 4672895719, 15561));
+		assertEquals("Order placed, Order#56690", lm.placeOrder(167934082, 4672895719, 15561));
 	}
 	
 	@Test
@@ -43,6 +43,6 @@ class TestClass1 {
 				DatabaseException.class,
 		           () -> lm.placeOrder(167937080, 4672235783, 12181));
 
-		    assertTrue(thrown.getMessage().contains("Student Number Not Found"));
+		    assertTrue(thrown.getMessage().contains("Input Not Found"));
 	}
 }
