@@ -4,4 +4,4 @@ CREATE TABLE studentInfo{
     first_name VARCHAR2(30),
     last_name VARCHAR2(30),
     e-mail VARCHAR2(30)
-}
+};
