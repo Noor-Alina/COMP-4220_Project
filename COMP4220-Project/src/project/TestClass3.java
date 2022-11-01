@@ -19,7 +19,7 @@ class TestClass3 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> lm.reserveOutOfStock(5, 2, "5A7", "abc12@gmail.com"));
+		           () -> sm.reserveOutOfStock(5, 2, "5A7", "abc12@gmail.com"));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}

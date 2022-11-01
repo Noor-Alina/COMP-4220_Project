@@ -40,7 +40,7 @@ class TestClass2 {
 			
 			DatabaseException thrown = assertThrows(
 					DatabaseException.class,
-					   () -> lm.reserve(167937080, 4672235783, 12181, "abc12@uwindsor.ca"));
+					   () -> sm.reserve(167937080, 4672235783, 12181, "abc12@uwindsor.ca"));
 	
 				assertTrue(thrown.getMessage().contains("Input Not Found"));
 		}
