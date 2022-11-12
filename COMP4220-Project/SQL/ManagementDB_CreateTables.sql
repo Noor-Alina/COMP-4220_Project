@@ -48,10 +48,34 @@ CREATE TABLE PlacedSpecificOrder(
 );
 
 CREATE TABLE OrderInventory(
-	id INTEGER(5) PRIMARY KEY,
+	id INTEGER(5) PRIMARY KEY AUTO_INCREMENT,
     order_id INTEGER(5),
     book_isbn INTEGER(10),
     item_quantity INTEGER(10),
     arrival_date DATE,
     FOREIGN KEY (book_isbn) REFERENCES BookInfo(book_isbn)
+);
+
+CREATE TABLE ReservedBooks(
+	reservation_id INTEGER(5) PRIMARY KEY,
+	student_id INTEGER(9), 
+    book_isbn INTEGER(10),
+    emp_id INTEGER(5),
+    reservedInStock BOOLEAN,
+    pickup_date DATE,
+    FOREIGN KEY (student_id) REFERENCES StudentInfo(student_id),
+    FOREIGN KEY (book_isbn) REFERENCES BookInfo(book_isbn),
+    FOREIGN KEY (emp_id) REFERENCES EmployeeInfo(emp_id)
+);
+
+CREATE TABLE SoldBooks(
+	id INTEGER(5) PRIMARY KEY AUTO_INCREMENT,
+    purchase_id INTEGER(5),
+    student_id INTEGER(9), 
+    book_isbn INTEGER(10),
+    emp_id INTEGER(5),
+    payment_id INTEGER(4),
+    FOREIGN KEY (student_id) REFERENCES StudentInfo(student_id),
+    FOREIGN KEY (book_isbn) REFERENCES BookInfo(book_isbn),
+    FOREIGN KEY (emp_id) REFERENCES EmployeeInfo(emp_id)
 );
