@@ -1,6 +1,6 @@
 use bookmanagement;
 
-# Data entry for studentInfo
+# Data Entry for StudentInfo
 INSERT INTO studentInfo
 VALUES (167934082, 'John', 'Smith', 'abc12@uwindsor.ca'); 
 INSERT INTO studentInfo
@@ -34,7 +34,7 @@ INSERT INTO BookInfo VALUES (1780143111, 'The Laws of Human Nature', 'Patrick', 
 INSERT INTO BookInfo VALUES (1781949759, 'The Mountain is You', 'Brianna', 'Wiest', 'Thought Catalog Books', 17.50, 1, 7);
 INSERT INTO BookInfo VALUES (1781305077, 'Forensic Science: Fundamentals & Investigation', 'Bertino', 'Bertino', 'Cengage Learning', 218.00, 5, 0);
 
-# Data entry for employeeInfo
+# Data Entry for EmployeeInfo
 INSERT INTO employeeInfo
 VALUES (11001, 'Sarah', 'Craig');
 INSERT INTO employeeInfo

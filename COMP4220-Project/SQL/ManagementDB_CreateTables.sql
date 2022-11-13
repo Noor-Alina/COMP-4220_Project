@@ -57,16 +57,19 @@ CREATE TABLE OrderInventory(
 );
 
 CREATE TABLE ReservedBooks(
-	reservation_id INTEGER(5) PRIMARY KEY,
+	reservation_id INTEGER AUTO_INCREMENT,
 	student_id INTEGER(9), 
     book_isbn INTEGER(10),
     emp_id INTEGER(5),
     reservedInStock BOOLEAN,
-    pickup_date DATE,
+    reserved_date DATE,
+    PRIMARY KEY (reservation_id),
     FOREIGN KEY (student_id) REFERENCES StudentInfo(student_id),
     FOREIGN KEY (book_isbn) REFERENCES BookInfo(book_isbn),
     FOREIGN KEY (emp_id) REFERENCES EmployeeInfo(emp_id)
 );
+
+ALTER TABLE ReservedBooks AUTO_INCREMENT = 50001;
 
 CREATE TABLE SoldBooks(
 	id INTEGER(5) PRIMARY KEY AUTO_INCREMENT,

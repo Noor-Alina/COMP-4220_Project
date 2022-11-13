@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 class TestClass2 {
 
 		
-		SoftwareManagement sm = new SoftwareManagement();
+		BookManagement bm = new BookManagement();
 
 		@Test
 		void testCase1() throws InputException, DatabaseException{
 			
-			assertEquals("reservation made, reservation#56690", sm.reserveInStock(167934082, 4672895719, 15561, "abc12@uwindsor.ca"));
+			assertEquals("reservation made, reservation#56690", bm.reserveInStock(167934082, 4672895710l, 15561, "abc12@uwindsor.ca"));
 		}
 		
 		@Test
@@ -20,7 +20,7 @@ class TestClass2 {
 			
 			InputException thrown = assertThrows(
 					InputException.class,
-					   () -> sm.reserveInStock(5, 2, "5A7", "abc12@gmail.com"));
+					   () -> bm.reserveInStock(5, 2, "5A7", "abc12@gmail.com"));
 	
 				assertTrue(thrown.getMessage().contains("Invalid Input"));
 		}
@@ -30,7 +30,7 @@ class TestClass2 {
 			
 			InputException thrown = assertThrows(
 					InputException.class,
-					   () -> sm.reserveInStock(5, 467985719, 15781, "abc12@uwindsor.ca"));
+					   () -> bm.reserveInStock(5, 467985719, 15781, "abc12@uwindsor.ca"));
 	
 				assertTrue(thrown.getMessage().contains("Invalid Input"));
 		}
@@ -40,7 +40,7 @@ class TestClass2 {
 			
 			DatabaseException thrown = assertThrows(
 					DatabaseException.class,
-					   () -> sm.reserveInStock(167937080, 4672235783, 12181, "abc12@uwindsor.ca"));
+					   () -> bm.reserveInStock(167937080, 4672235783l, 12181, "abc12@uwindsor.ca"));
 	
 				assertTrue(thrown.getMessage().contains("Input Not Found"));
 		}
@@ -50,7 +50,7 @@ class TestClass2 {
 
 			InputException thrown = assertThrows(
 					InputException.class,
-					   () -> sm.reserveInStock(167937080, 467985719, 15781, "abc12@gmail.ca"));
+					   () -> bm.reserveInStock(167937080, 467985719, 15781, "abc12@gmail.ca"));
 	
 				assertTrue(thrown.getMessage().contains("Invalid Input"));
 
