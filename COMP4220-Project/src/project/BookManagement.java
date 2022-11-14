@@ -78,7 +78,7 @@ public class BookManagement extends Throwable{
 		        	{
 		        		
 		        		Statement ord_id = connect.createStatement();
-		        		sql = "SELECT order_id FROM PlacedSpecificOrder WHERE student_id = " + student_id +" AND book_isbn = " + book_isbn +"AND emp_id = " + emp_id;
+		        		sql = "SELECT order_id FROM PlacedSpecificOrder WHERE student_id = " + student_id +" AND book_isbn = " + book_isbn +" AND emp_id = " + emp_id;
 		        		ResultSet rs2 = ord_id.executeQuery(sql);
 		        		if(rs2.next()) 
 		        		{
@@ -280,15 +280,15 @@ public class BookManagement extends Throwable{
         	int ret = insert.executeUpdate(sql);
         	
         	
-        	//Add the details (student id, book isbn, email to the OrderInventory table
+        	//Add the details
         	Statement addOrderItem = connect.createStatement();
         	long default_quantity = 10;
         	sql = "INSERT INTO OrderInventory (book_isbn, item_quantity, arrival_date) VALUES(" + book_isbn + ", " + default_quantity + ", " + getArrivalDate() + ")";
-        	ResultSet ret2 = addOrderItem.executeQuery(sql);
+        	int ret2 = addOrderItem.executeUpdate(sql);
         	
         	
         	//Retrieving the reservation_id for print out
-        	if(ret == 1) 
+        	if(ret2 == 1) 
         	{
         		
         		Statement res_id = connect.createStatement();
@@ -298,7 +298,7 @@ public class BookManagement extends Throwable{
         		if(rs2.next())
         		{
         			
-        			outputString = "Reservation#" + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate() + "\n\nYour order will arrive on " + getArrivalDate() + ". Your reservation period is 7 days from " + getArrivalDate() + ")";
+        			outputString = "Reservation#" + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate() + "\n\nYour order will arrive on " + getArrivalDate() + ". Your reservation period is 7 days from " + getArrivalDate();
         		}
         		
         	}
