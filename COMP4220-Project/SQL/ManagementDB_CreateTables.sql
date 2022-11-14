@@ -57,6 +57,8 @@ CREATE TABLE PlacedSpecificOrder(
     FOREIGN KEY (emp_id) REFERENCES EmployeeInfo(emp_id)
 );
 
+ALTER TABLE PlacedSpecificOrder AUTO_INCREMENT = 30001;
+
 CREATE TABLE OrderInventory(
 	id INTEGER(5) PRIMARY KEY AUTO_INCREMENT,
     book_isbn INTEGER(10),
