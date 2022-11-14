@@ -2,16 +2,18 @@ package project;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
 class TestClass3 {
 
-	SoftwareManagement sm = new SoftwareManagement();
+	BookManagement bm = new BookManagement();
 	
 	@Test
-	void testCase1() throws InputException, DatabaseException{
+	void testCase1() throws InputException, DatabaseException, SQLException{
 		
-		assertEquals("Reservation made, Reservation# 56690", sm.reserveOutOfStock(167934082, 4672895719, 15561, "abc12@uwindsor.ca"));
+		assertEquals("Reservation made, Reservation# 56690", bm.reserveOutOfStock(167934082, 1672895719, 15561, "abc12@uwindsor.ca"));
 	}
 	
 	@Test
@@ -19,7 +21,7 @@ class TestClass3 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> sm.reserveOutOfStock(5, 2, "5A7", "abc12@gmail.com"));
+		           () -> bm.reserveOutOfStock(5, 2, "5A7", "abc12@gmail.com"));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
@@ -29,7 +31,7 @@ class TestClass3 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> sm.reserveOutOfStock(5, 467985719, 15781, "abc12@uwindsor.ca"));
+		           () -> bm.reserveOutOfStock(5, 467985719, 15781, "abc12@uwindsor.ca"));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
@@ -39,7 +41,7 @@ class TestClass3 {
 		
 		DatabaseException thrown = assertThrows(
 				DatabaseException.class,
-		           () -> sm.reserveOutOfStock(167937082, 4672235719, 12181, "abc12@uwindsor.ca"));
+		           () -> bm.reserveOutOfStock(167937082, 1672235719, 12181, "abc12@uwindsor.ca"));
 
 		    assertTrue(thrown.getMessage().contains("Input Not Found"));
 	}
@@ -49,7 +51,7 @@ class TestClass3 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> sm.reserveOutOfStock(167937154, 4672235345, 16475, "abcd@gmail.com"));
+		           () -> bm.reserveOutOfStock(167937154, 1672235345, 16475, "abcd@gmail.com"));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}

@@ -2,16 +2,18 @@ package project;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
 class TestClass1 {
 
-	SoftwareManagement sm = new SoftwareManagement();
+	BookManagement bm = new BookManagement();
 	
 	@Test
-	void testCase1() throws InputException, DatabaseException{
+	void testCase1() throws InputException, DatabaseException, SQLException{
 		
-		assertEquals("Order placed, Order#56690", sm.placeOrder(167934082, 4672895719, 15561));
+		assertEquals("Order placed, Order#56690", bm.placeSpecificOrder(167934082, 1672895719, 15561, "abc12@uwindsor.ca"));
 	}
 	
 	@Test
@@ -19,7 +21,7 @@ class TestClass1 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> sm.placeOrder(5, 2, "5A7"));
+		           () -> bm.placeSpecificOrder(5, 2, "5A7", "abc12@gmail.com"));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
@@ -29,7 +31,7 @@ class TestClass1 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> sm.placeOrder(5, 467985719, 15781));
+		           () -> bm.placeSpecificOrder(5, 467985719, 15781, "abc12@uwindsor.ca"));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
@@ -39,7 +41,7 @@ class TestClass1 {
 		
 		DatabaseException thrown = assertThrows(
 				DatabaseException.class,
-		           () -> sm.placeOrder(167937080, 4672235783, 12181));
+		           () -> bm.placeSpecificOrder(167937080, 1672235783, 12181, "abc12@uwindsor.ca"));
 
 		    assertTrue(thrown.getMessage().contains("Input Not Found"));
 	}
