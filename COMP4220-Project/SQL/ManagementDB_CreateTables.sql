@@ -94,3 +94,7 @@ CREATE TABLE SoldBooks(
 );
 
 ALTER TABLE SoldBooks AUTO_INCREMENT = 10001;
+
+# Create user guest and assign permissions
+CREATE USER 'guest'@'localhost' IDENTIFIED BY PASSWORD 'guest123';
+GRANT ALL ON bookmanagement.* TO 'guest'@'localhost';
