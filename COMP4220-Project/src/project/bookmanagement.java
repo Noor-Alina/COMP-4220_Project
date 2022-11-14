@@ -30,7 +30,7 @@ public class BookManagement extends Throwable{
 		String outputString ="";
 		
 		//Checking if the first three inputs are valid
-		if(student_id > 999999999 || student_id < 100000001 || book_isbn > 999999999 || book_isbn < 1000000001 || emp_id > 99999 || emp_id < 10001)
+		if(student_id > 999999999 || student_id < 100000001 || book_isbn > 9999999999l || book_isbn < 1000000001 || emp_id > 99999 || emp_id < 10001)
 			throw new InputException();
 		
 		//Checking if the email is valid by checking the email type
@@ -39,19 +39,23 @@ public class BookManagement extends Throwable{
 		
 		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
         Statement exist = connect.createStatement();
-        String sql = "SELECT email FROM studentInfo WHERE EXISTS (SELECT student_id from studentInfo where student_id ="+ student_id + ") AND EXISTS (SELECT book_isbn from bookInfo WHERE book_isbn = "+ book_isbn + ") AND EXISTS (SELECT emp_id from employeeInfo WHERE emp_id = "+ emp_id + ")";
+        String sql = "SELECT email FROM studentInfo WHERE student_id = "+ student_id + " AND EXISTS (SELECT student_id from studentInfo where student_id ="+ student_id + ") AND EXISTS (SELECT book_isbn from bookInfo WHERE book_isbn = "+ book_isbn + ") AND EXISTS (SELECT emp_id from employeeInfo WHERE emp_id = "+ emp_id + ")";
 
         ResultSet rs = exist.executeQuery(sql);
         
         //If the inputs exist in the database, insert the data into the reservedBook
         if(rs.next()) {
         	
+        	//Throwing Exception if email is not verified 
         	if(!rs.getString(1).equals(email))
         		throw new DatabaseException();
         	
+        	//Inserting the data into reservedBook
         	Statement insert = connect.createStatement();
         	sql = "INSERT into ReservedBooks (student_id, book_isbn, emp_id, reservedInStock, reserved_date)VALUES (" + student_id + ", " + book_isbn +  ", " + emp_id +  ", " + 1 + ", " + getDate() + ")";
         	int ret = insert.executeUpdate(sql);
+        	
+        	//Retrieving the reservation_id for print out
         	if(ret == 1) {
         		
         		Statement res_id = connect.createStatement();
@@ -61,6 +65,20 @@ public class BookManagement extends Throwable{
         			
         			outputString = "Reservation#" + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate() + "\n\nYour reservation period is 7 days from " + getDate() + "!";
         		}
+        	}
+        	
+        	//Throwing exception for insertion failure
+        	else {
+        		
+        		throw new SQLException();
+        	}
+        	
+        	//Changing the sell stock as the book was reserved for selling
+        	Statement stockchange = connect.createStatement();
+        	sql = "UPDATE bookInfo SET sell_stock = sell_stock - 1 WHERE book_isbn = " + book_isbn + " AND sell_stock > 0";
+        	int ret2 = stockchange.executeUpdate(sql);
+        	if(ret2 != 1) {
+        		throw new SQLException();
         	}
         }
         

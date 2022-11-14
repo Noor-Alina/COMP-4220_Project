@@ -2,6 +2,15 @@ CREATE DATABASE bookmanagement;
 
 use bookmanagement;
 
+DROP Table placedspecificorder;
+DROP TABLE soldbooks;
+DROP Table loanedbooks;
+DROP Table orderinventory;
+DROP TABLE reservedBooks;
+DROP TABLE studentInfo;
+DROP TABLE employeeInfo;
+DROP TABLE bookInfo;
+
 CREATE TABLE StudentInfo (
     student_id INTEGER(9) PRIMARY KEY,
     first_name VARCHAR(30),
