@@ -9,14 +9,14 @@ import java.time.LocalDate;
 
 public class SoftwareManagement extends Throwable{
 
-	public static void main(String args[]) throws SQLException{
+	public static void main(String args[]) throws SQLException, InputException, DatabaseException{
 		
 		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
         Statement st = connect.createStatement();
         long student_id =167934082;
         long book_isbn = 1672895710;
         int emp_id = 15561;
-        String email = "abc12@uwindsor.ca";
+        /*String email = "abc12@uwindsor.ca";
         String sql = "SELECT email FROM studentInfo WHERE student_id = "+ student_id + " AND EXISTS (SELECT student_id from studentInfo where student_id ="+ student_id + ") AND EXISTS (SELECT book_isbn from bookInfo WHERE book_isbn = "+ book_isbn + ") AND EXISTS (SELECT emp_id from employeeInfo WHERE emp_id = "+ emp_id + ")";
 
         ResultSet rs = st.executeQuery(sql);
@@ -53,7 +53,14 @@ public class SoftwareManagement extends Throwable{
         else {
         	
         	System.out.println("error");
-        }
+        }*/
+        
+        BookManagement bManagement = new BookManagement();
+        
+        System.out.println(bManagement.reserveInStock(student_id, book_isbn, emp_id, "abc12@uwindsor.ca"));
+        
+        System.out.println(bManagement.sell(student_id, book_isbn, emp_id, 12345678910111l));
+        
 	}
 	
 	public static String getDate() {

@@ -23,7 +23,7 @@ INSERT INTO BookInfo VALUES (1781616499, 'The Gift of Imperfection', 'Brene', 'B
 INSERT INTO BookInfo VALUES (1780143111, 'The Laws of Human Nature', 'Patrick', 'King', 'Penguin Books', 29.70, 6, 5);
 INSERT INTO BookInfo VALUES (1781949759, 'The Mountain is You', 'Brianna', 'Wiest', 'Thought Catalog Books', 17.50, 1, 7);
 INSERT INTO BookInfo VALUES (1781305077, 'Forensic Science: Fundamentals & Investigation', 'Bertino', 'Bertino', 'Cengage Learning', 218.00, 5, 0);
-INSERT INTO BookInfo VALUES (1672895710, 'Introduction of Astronomy', 'Roberto', 'Giles', 'Cengage Learning', 202.00, 5, 0);
+INSERT INTO BookInfo VALUES (1672895710, 'Introduction of Astronomy', 'Roberto', 'Giles', 'Cengage Learning', 202.00, 20, 0);
 
 # Data Entry for EmployeeInfo
 INSERT INTO employeeInfo VALUES (11001, 'Sarah', 'Craig');

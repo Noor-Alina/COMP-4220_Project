@@ -2,16 +2,18 @@ package project;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
 class TestClass4 {
 
-    SoftwareManagement sm = new SoftwareManagement();
+    BookManagement bm = new BookManagement();
     
     @Test
-    void testCase1() throws InputException, DatabaseException {
+    void testCase1() throws InputException, DatabaseException, SQLException {
         
-        assertEquals("Order placed, order# 56690", sm.sell(167934082, 4672895719, 15561, 12345678910111);
+        assertEquals("Order placed, order# 56690", bm.sell(167934082, 1672895719, 15561, 12345678910111l));
     }
     
     @Test
@@ -19,7 +21,7 @@ class TestClass4 {
         
         InputException thrown = assertThrows(
                 InputException.class,
-                   () -> sm.sell(5, 2, "5A7", 12345565677 ));
+                   () -> bm.sell(5, 2, "5A7", 12345565677l ));
 
             assertTrue(thrown.getMessage().contains("Invalid Input"));
     }
@@ -29,7 +31,7 @@ class TestClass4 {
         
         InputException thrown = assertThrows(
                 InputException.class,
-                   () -> sm.sell(5, 467985719, 15781, 12345678922611 ));
+                   () -> bm.sell(5, 167985719, 15781, 12345678922611l ));
 
             assertTrue(thrown.getMessage().contains("Invalid Input"));
     }
@@ -39,7 +41,7 @@ class TestClass4 {
         
         DatabaseException thrown = assertThrows(
                 DatabaseException.class,
-                   () -> sm.sell(167937082, 4672235719, 12181, 12345678998761));
+                   () -> bm.sell(167937082, 1672235719, 12181, 12345678998761l));
 
             assertTrue(thrown.getMessage().contains("Input Not Found"));
     }
@@ -49,7 +51,7 @@ class TestClass4 {
         
         InputException thrown = assertThrows(
                 InputException.class,
-                   () -> sm.sell(167937154, 4672895719, 15561, 12345565677));
+                   () -> bm.sell(167937154, 1672895719, 15561, 12345565677l));
 
             assertTrue(thrown.getMessage().contains("Invalid Input"));
     }
