@@ -193,7 +193,7 @@ public class BookManagement extends Throwable{
         		ResultSet rs3 = pur_id.executeQuery(sql);
         		if(rs3.next()) {
         			
-        			outputString = "Order#" + rs3.getString(1) + "\n\nStudent Number: " + student_id +"\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate() + "\n\nYour reservation period is 7 days from " + getDate() + "!";
+        			outputString = "Order#" + rs3.getString(1) + "\n\nStudent Number: " + student_id +"\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate();
         		}	
         	}
         	
