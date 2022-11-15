@@ -7,146 +7,122 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
+import java.util.*;
+
 public class SoftwareManagement extends Throwable{
 
 	public static void main(String args[]) throws SQLException, InputException, DatabaseException{
 		
-		long student_id =167934082;
-        long book_isbn = 1672895710;
-        int emp_id = 15561;
+		//Adding the BookManagement class variable for using the BookManagement method
+		BookManagement bm = new BookManagement();
 		
-		/*
-		 * 
-		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
-        Statement st = connect.createStatement();
-        long student_id =167934082;
-        long book_isbn = 1672895710;
-        int emp_id = 15561;
-        
-        String email = "abc12@uwindsor.ca";
-        String sql = "SELECT email FROM studentInfo WHERE student_id = "+ student_id + " AND EXISTS (SELECT student_id from studentInfo where student_id ="+ student_id + ") AND EXISTS (SELECT book_isbn from bookInfo WHERE book_isbn = "+ book_isbn + ") AND EXISTS (SELECT emp_id from employeeInfo WHERE emp_id = "+ emp_id + ")";
-        ResultSet rs = st.executeQuery(sql);
-        
-        //If the inputs exist in the database, insert the data into the placedspecificorder
-        if(rs.next()) 
-        {
-        	//Throwing Exception if email is not verified 
-        	if(!rs.getString(1).equals(email))
-        		throw new DatabaseException();
-        	
-        	
-        	//Connecting to MySQL database
-        	Connection insert = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
-        	Statement specificOrder = connect.createStatement();
-        	sql = "INSERT into PlacedSpecificOrder(student_id, book_isbn, emp_id, order_date) VALUES(" + student_id + ", " + book_isbn + ", " + emp_id + ", " + getDate() + ")";
-        	int ret = specificOrder.executeUpdate(sql);
-        	
-        	
-        	
-        	//Retrieving the order_id for print out
-        	if(ret == 1) 
-        	{
-        		
-        		Statement ord_id = connect.createStatement();
-        		sql = "SELECT order_id FROM PlacedSpecificOrder WHERE student_id = " + student_id +" AND book_isbn = " + book_isbn +"AND emp_id = " + emp_id;
-        		ResultSet rs2 = ord_id.executeQuery(sql);
-        		if(rs2.next()) 
-        		{
-        			
-        			String outputString = "Order# " + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nOrder Date: " + getDate() + "\n\nYour Order will arrive on " + getArrivalDate() +".";
-        			System.out.println(outputString);
-        		}
-        		
-        	}
-        	
-        	//Throwing exception for insertion failure
-        	else 
-        	{
-        		
-        		throw new SQLException();
-        	}
-        }
-        
-        
-        //Throw exception if the inputs don't exist in the database
-        else 
-        {
-        	
-        	throw new DatabaseException();
-        }
-    
-}
-
-        
-        /*String email = "abc12@uwindsor.ca";
-        String sql = "SELECT email FROM studentInfo WHERE student_id = "+ student_id + " AND EXISTS (SELECT student_id from studentInfo where student_id ="+ student_id + ") AND EXISTS (SELECT book_isbn from bookInfo WHERE book_isbn = "+ book_isbn + ") AND EXISTS (SELECT emp_id from employeeInfo WHERE emp_id = "+ emp_id + ")";
-
-        ResultSet rs = st.executeQuery(sql);
-        
-        if(rs.next()) {
-        	
-        	if(!rs.getString(1).equals(email)) {
-        		System.out.println(rs.getString(1));
-        		System.out.println(email);
-        	}
-        	
-        	Statement insert = connect.createStatement();
-        	sql = "INSERT into ReservedBooks (student_id, book_isbn, emp_id, reservedInStock, reserved_date)VALUES (" + student_id + ", " + book_isbn +  ", " + emp_id +  ", " + 1 + ", " + getDate() + ")";
-        	int ret = insert.executeUpdate(sql);
-        	if(ret == 1) {
-        		
-        		Statement res_id = connect.createStatement();
-        		sql = "SELECT reservation_id FROM ReservedBooks WHERE student_id = " + student_id +" AND book_isbn = " + book_isbn;
-        		ResultSet rs2 = res_id.executeQuery(sql);
-        		if(rs2.next()) {
-        			
-        			 String out = "Reservation#" + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate() + "\n\nYour reservation period is 7 days from " + getDate() + "!";
-        			 System.out.println(out);
-        		}
-        	}
-        	Statement stockchange = connect.createStatement();
-        	sql = "UPDATE bookInfo SET sell_stock = sell_stock - 1 WHERE book_isbn = " + book_isbn + " AND sell_stock > 0";
-        	int ret2 = stockchange.executeUpdate(sql);
-        	if(ret2 != 1) {
-        		throw new SQLException();
-        	}
-        }
-        
-        else {
-        	
-        	System.out.println("error");
-        }*/
-        
-        BookManagement bManagement = new BookManagement();
-        
-        //System.out.println(bManagement.reserveInStock(student_id, book_isbn, emp_id, "abc12@uwindsor.ca"));
-        
-        //System.out.println(bManagement.sell(student_id, book_isbn, emp_id, 12345678910111l));
-        
-        System.out.println(bManagement.placeSpecificOrder(student_id, book_isbn, emp_id, "abc12@uwindsor.ca"));
-        
-    	//System.out.println(bManagement.reserveOutOfStock(student_id, book_isbn, emp_id, "abc12@uwindsor.ca"));
-
-        
+		//Declaring variables for taking user input
+		long student_id;
+        long book_isbn;
+        int emp_id;
+        long card_code;
+        String email;
+		
+		
+		System.out.println("Choose one of the options below:\n\n1) Place a specific order\n\n2) Reserve a Book\n\n3) Purchase a Book\n\n");
+		Scanner in = new Scanner(System.in);
+		int userIn = Integer.parseInt(in.next());
+		
+		//User wants to place a specific order
+		if(userIn == 1) {
+			
+			//Taking the student number of the student
+			System.out.println("Please enter the student number of the student\n\n");
+			student_id = Long.parseLong(in.next());
+			
+			//Taking the book_isbn of the book
+			System.out.println("Please enter the ISBN-10 of the book\n\n");
+			book_isbn = Long.parseLong(in.next());
+			
+			//Taking the employee number of the employee
+			System.out.println("Please enter the employee number of the employee\n\n");
+			emp_id = Integer.parseInt(in.next());
+			
+			//Taking the email of the student
+			System.out.println("Please enter the email of the student\n\n\n");
+			email = in.next();
+			
+			//Print the receipt
+			System.out.println(bm.placeSpecificOrder(student_id, book_isbn, emp_id, email));
+		}
+		
+		//User wants to reserve a book
+		else if(userIn == 2){
+			
+			//Taking the student number of the student
+			System.out.println("Please enter the student number of the student\n\n");
+			student_id = Long.parseLong(in.next());
+			
+			//Taking the book_isbn of the book
+			System.out.println("Please enter the ISBN-10 of the book\n\n");
+			book_isbn = Long.parseLong(in.next());
+			
+			//Taking the employee number of the employee
+			System.out.println("Please enter the employee number of the employee\n\n");
+			emp_id = Integer.parseInt(in.next());
+			
+			//Taking the email of the student
+			System.out.println("Please enter the email of the student\n\n\n");
+			email = in.next();
+			
+			//Connecting to the database
+			Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
+	        Statement st = connect.createStatement();
+	        
+	        String sql = "SELECT sell_stock FROM bookInfo WHERE book_isbn = "+ book_isbn;
+	        ResultSet rs = st.executeQuery(sql);
+	        
+	        //Checking the sell stock of the book
+	        if(rs.next()) {
+	        	
+	        	int stock = rs.getInt(1);
+	        	
+	        	//The book is in stock, so we can use the reserveInStock method
+	        	if(stock > 0) {
+	        		
+	        		System.out.println(bm.reserveInStock(student_id, book_isbn, emp_id, email));
+	        	}
+	        	
+	        	//The book is out of stock, so we can use the reserveOutOfStock method
+	        	else {
+	        		
+	        		System.out.println(bm.reserveOutOfStock(student_id, book_isbn, emp_id, email));
+	        	}
+	        }
+	        
+	        else {
+	        	
+	        	throw new SQLException();
+	        }
+	        
+		}
+		
+		//User wants to sell a book
+		else if(userIn == 3) {
+			
+			//Taking the student number of the student
+			System.out.println("Please enter the student number of the student\n\n");
+			student_id = Long.parseLong(in.next());
+			
+			//Taking the book_isbn of the book
+			System.out.println("Please enter the ISBN-10 of the book\n\n");
+			book_isbn = Long.parseLong(in.next());
+			
+			//Taking the employee number of the employee
+			System.out.println("Please enter the employee number of the employee\n\n");
+			emp_id = Integer.parseInt(in.next());
+			
+			//Taking the card code of the student
+			System.out.println("Please enter the card number of the student\n\n");
+			card_code = Long.parseLong(in.next());
+			
+			//Print the receipt
+			System.out.println(bm.sell(student_id, book_isbn, emp_id, card_code));
+		}
 	}
-	
-	public static String getDate() {
-		
-		  LocalDate date = LocalDate.now();
-	      String str = "'" + date + "'";
-	      
-	      return str;
-	}
-	
-	public static String getArrivalDate() {
-		 
-		LocalDate orderDate = LocalDate.now();
-	  
-		//adding 14 days to the localDate
-		LocalDate arrivalDate = orderDate.plusDays(14);
-		String str = "'" + arrivalDate + "'";
-		
-		return str;
-}
-	
 }

@@ -110,7 +110,7 @@ public class BookManagement extends Throwable{
 		        		if(rs2.next()) 
 		        		{
 		        			
-		        			outputString = "Order# " + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nOrder Date: " + getDate() + "\n\nYour order will arrive on " + getArrivalDate();
+		        			outputString = "Order#" + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nOrder Date: " + getDate() + "\n\nYour order will arrive on " + getArrivalDate();
 		        		}
 		        		
 		        	}
@@ -303,7 +303,7 @@ public class BookManagement extends Throwable{
         	
         	//Inserting the data into reservedBook
         	Statement insert = connect.createStatement();
-        	sql = "INSERT into ReservedBooks (student_id, book_isbn, emp_id, reservedInStock, reserved_date)VALUES (" + student_id + ", " + book_isbn +  ", " + emp_id +  ", " + 1 + ", " + getDate() + ")";
+        	sql = "INSERT into ReservedBooks (student_id, book_isbn, emp_id, reservedInStock, reserved_date)VALUES (" + student_id + ", " + book_isbn +  ", " + emp_id +  ", " + 0 + ", " + getDate() + ")";
         	int ret = insert.executeUpdate(sql);
         	
         	
@@ -462,7 +462,7 @@ public class BookManagement extends Throwable{
         		if(rs3.next()) 
         		{
         			
-        			outputString = "Order#" + rs3.getString(1) + "\n\nStudent Number: " + student_id +"\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate();
+        			outputString = "Order#" + rs3.getString(1) + "\n\nStudent Number: " + student_id +"\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nCard Code: **********" + last4digitString + "\n\nDate: " + getDate();
         		}	
         	}
         	
