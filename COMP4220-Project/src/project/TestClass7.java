@@ -13,7 +13,7 @@ class TestClass7 {
     @Test
     void testCase1() throws InputException, DatabaseException, SQLException {
         
-        assertEquals("1672895710, Introduction of Astronomy, Roberto, Giles, Cengage Learning, 202.00, 8, 0", bm.search(1672895710));
+        assertEquals("1672895710, Introduction of Astronomy, Roberto, Giles, Cengage Learning, 202.00, 18, 0", bm.search(1672895710));
     }
     
     
