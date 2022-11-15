@@ -91,8 +91,7 @@ public class BookManagement extends Throwable{
 		        	
 		        	
 		        	//Connecting to MySQL database
-		        	Connection insert = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
-		        	Statement specificOrder = insert.createStatement();
+		        	Statement specificOrder = connect.createStatement();
 		        	sql = "INSERT into PlacedSpecificOrder(student_id, book_isbn, emp_id, order_date) VALUES(" + student_id + ", " + book_isbn + ", " + emp_id + ", " + getDate() + ")";
 		        	int ret = specificOrder.executeUpdate(sql);
 		        	

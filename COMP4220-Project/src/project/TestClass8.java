@@ -11,7 +11,7 @@ class TestClass8 {
 	@Test
 	void testCase1() throws InputException, DatabaseException{
 		
-		assertEquals("Order made, Order# 56690", sm.order(4672895719, 15561, "abc12@uwindsor.ca"));
+		assertEquals("Order made, Order# 56690", sm.order(1672895719, 15561));
 	}
 	
 	@Test
@@ -19,7 +19,7 @@ class TestClass8 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> sm.order(2, "5A7", "abc12@gmail.com"));
+		           () -> sm.order(2, "5A7"));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
@@ -29,7 +29,7 @@ class TestClass8 {
 		
 		DatabaseException thrown = assertThrows(
 				DatabaseException.class,
-		           () -> sm.order(4672235719, 15781, "abc12@uwindsor.ca"));
+		           () -> sm.order(1672235719, 15781));
 
 		    assertTrue(thrown.getMessage().contains("Input Not Found"));
 	}
@@ -40,8 +40,21 @@ class TestClass8 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> sm.order(4672235345, 16475, "abcd@gmail.com"));
+		           () -> sm.order(1672235345, 155615));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
+	
+
+	@Test
+	void testCase5(){
+		
+		InputException thrown = assertThrows(
+				InputException.class,
+		           () -> sm.order(167223534567, 15561));
+
+		    assertTrue(thrown.getMessage().contains("Invalid Input"));
+	}
+	
+	
 }
