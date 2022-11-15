@@ -110,7 +110,7 @@ public class BookManagement extends Throwable{
 		        		if(rs2.next()) 
 		        		{
 		        			
-		        			outputString = "Order# " + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nOrder Date: " + getDate() + "\n\nYour Order will arrive on " + getArrivalDate();
+		        			outputString = "Order# " + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nOrder Date: " + getDate() + "\n\nYour order will arrive on " + getArrivalDate();
 		        		}
 		        		
 		        	}

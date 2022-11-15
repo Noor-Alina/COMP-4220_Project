@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestClass4 (1)" project="COMP4220-Project" tests="19" started="19" failures="0" errors="0" ignored="0">
+  <testsuite name="project.TestClass4" time="0.308" displayname="TestClass4" uniqueid="[engine:junit-jupiter]/[class:project.TestClass4]">
+    <testcase name="testCase1" classname="project.TestClass4" time="0.286" displayname="testCase1()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass4]/[method:testCase1()]"/>
+    <testcase name="testCase2" classname="project.TestClass4" time="0.002" displayname="testCase2()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass4]/[method:testCase2()]"/>
+    <testcase name="testCase3" classname="project.TestClass4" time="0.001" displayname="testCase3()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass4]/[method:testCase3()]"/>
+    <testcase name="testCase4" classname="project.TestClass4" time="0.018" displayname="testCase4()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass4]/[method:testCase4()]"/>
+    <testcase name="testCase5" classname="project.TestClass4" time="0.0" displayname="testCase5()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass4]/[method:testCase5()]"/>
+  </testsuite>
+  <testsuite name="project.TestClass3" time="0.046" displayname="TestClass3" uniqueid="[engine:junit-jupiter]/[class:project.TestClass3]">
+    <testcase name="testCase1" classname="project.TestClass3" time="0.027" displayname="testCase1()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass3]/[method:testCase1()]"/>
+    <testcase name="testCase2" classname="project.TestClass3" time="0.0" displayname="testCase2()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass3]/[method:testCase2()]"/>
+    <testcase name="testCase3" classname="project.TestClass3" time="0.0" displayname="testCase3()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass3]/[method:testCase3()]"/>
+    <testcase name="testCase4" classname="project.TestClass3" time="0.016" displayname="testCase4()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass3]/[method:testCase4()]"/>
+    <testcase name="testCase5" classname="project.TestClass3" time="0.001" displayname="testCase5()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass3]/[method:testCase5()]"/>
+  </testsuite>
+  <testsuite name="project.TestClass2" time="0.038" displayname="TestClass2" uniqueid="[engine:junit-jupiter]/[class:project.TestClass2]">
+    <testcase name="testCase1" classname="project.TestClass2" time="0.019" displayname="testCase1()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass2]/[method:testCase1()]"/>
+    <testcase name="testCase2" classname="project.TestClass2" time="0.001" displayname="testCase2()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass2]/[method:testCase2()]"/>
+    <testcase name="testCase3" classname="project.TestClass2" time="0.001" displayname="testCase3()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass2]/[method:testCase3()]"/>
+    <testcase name="testCase4" classname="project.TestClass2" time="0.016" displayname="testCase4()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass2]/[method:testCase4()]"/>
+    <testcase name="testCase5" classname="project.TestClass2" time="0.0" displayname="testCase5()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass2]/[method:testCase5()]"/>
+  </testsuite>
+  <testsuite name="project.TestClass1" time="0.05" displayname="TestClass1" uniqueid="[engine:junit-jupiter]/[class:project.TestClass1]">
+    <testcase name="testCase1" classname="project.TestClass1" time="0.032" displayname="testCase1()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass1]/[method:testCase1()]"/>
+    <testcase name="testCase2" classname="project.TestClass1" time="0.001" displayname="testCase2()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass1]/[method:testCase2()]"/>
+    <testcase name="testCase3" classname="project.TestClass1" time="0.001" displayname="testCase3()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass1]/[method:testCase3()]"/>
+    <testcase name="testCase4" classname="project.TestClass1" time="0.016" displayname="testCase4()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass1]/[method:testCase4()]"/>
+  </testsuite>
+</testrun>
