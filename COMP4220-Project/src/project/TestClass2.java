@@ -2,25 +2,28 @@ package project;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
 class TestClass2 {
 
 		
-		SoftwareManagement sm = new SoftwareManagement();
+		BookManagement bm = new BookManagement();
 
 		@Test
-		void testCase1() throws InputException, DatabaseException{
+		void testCase1() throws InputException, DatabaseException, SQLException{
 			
-			assertEquals("reservation made, reservation#56690", sm.reserve(167934082, 4672895719, 15561, "abc12@uwindsor.ca"));
+			assertEquals("Reservation#50001\n\nStudent Number: 167934082\n\nE-mail:abc12@uwindsor.ca\n\nISBN-10: 1672895710\n\nEmployee Number: 15561\n\nDate: '2022-11-14'\n\nYour reservation period is '2022-11-14'--'2022-11-21'!", bm.reserveInStock(167934082, 1672895710, 15561, "abc12@uwindsor.ca"));
 		}
+		
 		
 		@Test
 		void testCase2() {
 			
 			InputException thrown = assertThrows(
 					InputException.class,
-					   () -> sm.reserve(5, 2, "5A7", "abc12@gmail.com"));
+					   () -> bm.reserveInStock(5, 2, "5A7", "abc12@gmail.com"));
 	
 				assertTrue(thrown.getMessage().contains("Invalid Input"));
 		}
@@ -30,7 +33,7 @@ class TestClass2 {
 			
 			InputException thrown = assertThrows(
 					InputException.class,
-					   () -> sm.reserve(5, 467985719, 15781, "abc12@uwindsor.ca"));
+					   () -> bm.reserveInStock(5, 467985719, 15781, "abc12@uwindsor.ca"));
 	
 				assertTrue(thrown.getMessage().contains("Invalid Input"));
 		}
@@ -40,7 +43,7 @@ class TestClass2 {
 			
 			DatabaseException thrown = assertThrows(
 					DatabaseException.class,
-					   () -> sm.reserve(167937080, 4672235783, 12181, "abc12@uwindsor.ca"));
+					   () -> bm.reserveInStock(167937080, 1672235783, 12181, "abc12@uwindsor.ca"));
 	
 				assertTrue(thrown.getMessage().contains("Input Not Found"));
 		}
@@ -50,7 +53,7 @@ class TestClass2 {
 
 			InputException thrown = assertThrows(
 					InputException.class,
-					   () -> sm.reserve(167937080, 467985719, 15781, "abc12@gmail.ca"));
+					   () -> bm.reserveInStock(167937080, 467985719, 15781, "abc12@gmail.ca"));
 	
 				assertTrue(thrown.getMessage().contains("Invalid Input"));
 
