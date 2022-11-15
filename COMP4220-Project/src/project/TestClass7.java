@@ -2,6 +2,8 @@ package project;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
 class TestClass7 {
@@ -9,10 +11,11 @@ class TestClass7 {
     BookManagement bm = new BookManagement();
     
     @Test
-    void testCase1() throws InputException, DatabaseException {
+    void testCase1() throws InputException, DatabaseException, SQLException {
         
-        assertEquals("Book in stock", bm.search(1672895710));
+        assertEquals("1672895710, Introduction of Astronomy, Roberto, Giles, Cengage Learning, 202.00, 8, 0", bm.search(1672895710));
     }
+    
     
     @Test
     void testCase2(){

@@ -581,4 +581,45 @@ public class BookManagement extends Throwable{
 		
 		throw new InputException();
 	}
+	
+	public String search(long book_isbn) throws InputException, SQLException, DatabaseException {
+		
+		String outputString ="";
+		
+		//Checking if the inputs are valid
+		if(book_isbn > 9999999999l || book_isbn < 1000000001)
+			throw new InputException();
+		
+		//Connecting to MySQL database
+		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
+		Statement exist = connect.createStatement();
+		String sql = "SELECT * FROM bookInfo WHERE book_isbn = "+ book_isbn;
+
+		ResultSet rs = exist.executeQuery(sql);
+		        
+		//If the first two inputs exist in the database, inserting into the orderInventory database
+		 
+        while(rs.next()) {
+        	
+        	for (int i = 1; i <= 8; i++) {
+        		
+        		if (i != 8) {
+        		outputString += rs.getString(i) + ", ";
+        		}
+        		
+        		else {
+        			outputString += rs.getString(i);
+        		}
+        		
+        		
+        	}
+        	
+        }
+        
+        if (outputString.isEmpty())
+        	throw new DatabaseException();
+        	
+		return outputString;
+	}
+	
 }
