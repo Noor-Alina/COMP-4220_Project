@@ -611,7 +611,6 @@ public class BookManagement extends Throwable{
         			outputString += rs.getString(i);
         		}
         		
-        		
         	}
         	
         }
