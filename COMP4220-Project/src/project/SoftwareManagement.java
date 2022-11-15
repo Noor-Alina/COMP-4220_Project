@@ -123,9 +123,9 @@ public class SoftwareManagement extends Throwable{
         
         //System.out.println(bManagement.sell(student_id, book_isbn, emp_id, 12345678910111l));
         
-        //System.out.println(bManagement.placeSpecificOrder(student_id, book_isbn, emp_id, "abc12@uwindsor.ca"));
+        System.out.println(bManagement.placeSpecificOrder(student_id, book_isbn, emp_id, "abc12@uwindsor.ca"));
         
-    	System.out.println(bManagement.reserveOutOfStock(student_id, book_isbn, emp_id, "abc12@uwindsor.ca"));
+    	//System.out.println(bManagement.reserveOutOfStock(student_id, book_isbn, emp_id, "abc12@uwindsor.ca"));
 
         
 	}

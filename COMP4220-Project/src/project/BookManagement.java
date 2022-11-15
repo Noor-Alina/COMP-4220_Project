@@ -33,6 +33,32 @@ public class BookManagement extends Throwable{
 			return str;
 	}
 	
+	public static String getInStockReservationPeriod() {
+		
+		LocalDate reservationDate = LocalDate.now();
+		
+		//adding 7 day period for reservation
+		LocalDate reservationEndDate = reservationDate.plusDays(7);
+		
+		String str = "'" + reservationDate + "'" + "--" + "'" +  reservationEndDate + "'";
+		
+		return str;
+	}
+	
+	public static String getOutOfStockReservationPeriod() {
+		
+		LocalDate reservationDate = LocalDate.now();
+		
+		//adding 7 day period for reservation
+		LocalDate reservationStartDate = reservationDate.plusDays(14);
+		LocalDate reservationEndDate = reservationStartDate.plusDays(7);
+
+		
+		String str = "'" + reservationStartDate + "'" + "--" + "'" +  reservationEndDate + "'";
+		
+		return str;
+	}
+	
 	
 	/*
 	 * Implementing the function for TestClass1
@@ -67,7 +93,7 @@ public class BookManagement extends Throwable{
 		        	
 		        	//Connecting to MySQL database
 		        	Connection insert = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
-		        	Statement specificOrder = connect.createStatement();
+		        	Statement specificOrder = insert.createStatement();
 		        	sql = "INSERT into PlacedSpecificOrder(student_id, book_isbn, emp_id, order_date) VALUES(" + student_id + ", " + book_isbn + ", " + emp_id + ", " + getDate() + ")";
 		        	int ret = specificOrder.executeUpdate(sql);
 		        	
@@ -80,10 +106,11 @@ public class BookManagement extends Throwable{
 		        		Statement ord_id = connect.createStatement();
 		        		sql = "SELECT order_id FROM PlacedSpecificOrder WHERE student_id = " + student_id +" AND book_isbn = " + book_isbn +" AND emp_id = " + emp_id;
 		        		ResultSet rs2 = ord_id.executeQuery(sql);
+		        		
 		        		if(rs2.next()) 
 		        		{
 		        			
-		        			outputString = "Order# " + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nOrder Date: " + getDate() + "\n\nYour Order will arrive on " + getArrivalDate() +".";
+		        			outputString = "Order# " + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nOrder Date: " + getDate() + "\n\nYour Order will arrive on " + getArrivalDate();
 		        		}
 		        		
 		        	}
@@ -181,7 +208,7 @@ public class BookManagement extends Throwable{
         		if(rs2.next()) 
         		{
         			
-        			outputString = "Reservation#" + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate() + "\n\nYour reservation period is 7 days from " + getDate() + "!";
+        			outputString = "Reservation#" + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate() + "\n\nYour reservation period is " + getInStockReservationPeriod() + "!";
         		}
         		
         		//Changing the sell stock as the book was reserved for selling
@@ -298,7 +325,7 @@ public class BookManagement extends Throwable{
         		if(rs2.next())
         		{
         			
-        			outputString = "Reservation#" + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate() + "\n\nYour order will arrive on " + getArrivalDate() + ". Your reservation period is 7 days from " + getArrivalDate();
+        			outputString = "Reservation#" + rs2.getString(1) + "\n\nStudent Number: " + student_id +"\n\nE-mail:"+ email + "\n\nISBN-10: " + book_isbn + "\n\nEmployee Number: " + emp_id + "\n\nDate: " + getDate() + "\n\nYour order will arrive on " + getArrivalDate() + ". Your reservation period is " + getOutOfStockReservationPeriod();
         		}
         		
         	}
