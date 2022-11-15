@@ -2,46 +2,21 @@ package project;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
-class TestClass6 {
-
-	SoftwareManagement sm = new SoftwareManagement();
-	
+public class TestClass6 {
+    
+	EmployeeManagement em = new EmployeeManagement();
 	@Test
-	void testCase1() throws InputException, DatabaseException{
-		
-		assertEquals("Order made, Order# 56690", sm.order(4672895719, 15561, "abc12@uwindsor.ca"));
+	void testCase1() throws SQLException {
+		assertEquals("No one is working today", em.viewHours().get(0));
 	}
 	
 	@Test
-	void testCase2(){
-		
-		InputException thrown = assertThrows(
-				InputException.class,
-		           () -> sm.order(2, "5A7", "abc12@gmail.com"));
-
-		    assertTrue(thrown.getMessage().contains("Invalid Input"));
-	}
-	
-	@Test
-	void testCase3(){
-		
-		DatabaseException thrown = assertThrows(
-				DatabaseException.class,
-		           () -> sm.order(4672235719, 15781, "abc12@uwindsor.ca"));
-
-		    assertTrue(thrown.getMessage().contains("Input Not Found"));
-	}
-	
-	
-	@Test
-	void testCase4(){
-		
-		InputException thrown = assertThrows(
-				InputException.class,
-		           () -> sm.order(4672235345, 16475, "abcd@gmail.com"));
-
-		    assertTrue(thrown.getMessage().contains("Invalid Input"));
+	void testCase2() throws InputException, DatabaseException, SQLException{
+		em.setHours(15561, "2022-11-15", "11:00", "15:00");
+		assertEquals("Margaret Robin 11:00 15:00 ", em.viewHours().get(0));
 	}
 }

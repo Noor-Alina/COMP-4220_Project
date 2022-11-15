@@ -2,6 +2,7 @@ CREATE DATABASE bookmanagement;
 
 use bookmanagement;
 
+DROP Table employeeManagement;
 DROP Table placedspecificorder;
 DROP TABLE soldbooks;
 DROP Table loanedbooks;
@@ -97,3 +98,12 @@ CREATE TABLE SoldBooks(
 );
 
 ALTER TABLE SoldBooks AUTO_INCREMENT = 10001;
+
+CREATE TABLE EmployeeManagement (
+	id INTEGER(5) PRIMARY KEY AUTO_INCREMENT,
+    emp_id INTEGER(5),
+    work_date DATE,
+    starting_time VARCHAR(30),
+    ending_time VARCHAR(30),
+    FOREIGN KEY (emp_id) REFERENCES EmployeeInfo(emp_id)
+);

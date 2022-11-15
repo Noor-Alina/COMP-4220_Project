@@ -75,7 +75,6 @@ public class BookManagement extends Throwable{
 		if(email.length() <= 12 || !email.substring(email.length()-12).equals("@uwindsor.ca"))
 			throw new InputException();
 		
-		
 		//Connecting to MySQL database
 				Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
 		        Statement exist = connect.createStatement();
