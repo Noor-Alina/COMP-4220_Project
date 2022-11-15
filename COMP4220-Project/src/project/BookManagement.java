@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
+import jdk.javadoc.internal.doclets.toolkit.taglets.ThrowsTaglet;
+
 public class BookManagement extends Throwable{
 	
 	/*
@@ -507,6 +509,76 @@ public class BookManagement extends Throwable{
 	
 	public String sell(String student_id, String book_isbn, String emp_id, String email) throws InputException{
 		 
+		throw new InputException();
+	}
+	
+	/*
+	 * Implementing the function for TestClass8
+	 */
+	public String placedForOrder(long book_isbn, int emp_id) throws InputException, SQLException, DatabaseException {
+		
+		String outputString ="";
+		
+		//Checking if the inputs are valid
+		if(book_isbn > 9999999999l || book_isbn < 1000000001 || emp_id > 99999 || emp_id < 10001)
+			throw new InputException();
+		
+		//Connecting to MySQL database
+		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
+		Statement exist = connect.createStatement();
+		String sql = "SELECT book_isbn FROM bookInfo WHERE book_isbn = "+ book_isbn + " AND EXISTS (SELECT book_isbn from bookInfo WHERE book_isbn = "+ book_isbn + ") AND EXISTS (SELECT emp_id from employeeInfo WHERE emp_id = "+ emp_id + ")";
+
+		ResultSet rs = exist.executeQuery(sql);
+		        
+		//If the first two inputs exist in the database, inserting into the orderInventory database
+		if(rs.next()) {
+			
+			//Add the details
+        	Statement addOrderItem = connect.createStatement();
+        	long default_quantity = 10;
+        	sql = "INSERT INTO OrderInventory (book_isbn, item_quantity, arrival_date) VALUES(" + book_isbn + ", " + default_quantity + ", " + getArrivalDate() + ")";
+        	int ret2 = addOrderItem.executeUpdate(sql);
+        	
+        	
+        	//Outputting the insertion success prompt
+        	if(ret2 == 1) 
+        	{
+        		
+        		outputString = "Book order added to the order inventory";
+        	}
+        	
+        	//Outputting the insertion failure prompt
+        	else {
+        		
+        		throw new SQLException();
+        	}
+        		
+		}
+		
+		else {
+			
+			throw new DatabaseException();
+		}
+		
+		
+		return outputString;
+	}
+	
+	/*
+	 * Implementing the InputException for any other combinations of input of TestClass8
+	 */
+	public String placedForOrder(String book_isbn, int emp_id) throws InputException {
+		
+		throw new InputException();
+	}
+	
+	public String placedForOrder(long book_isbn, String emp_id) throws InputException {
+		
+		throw new InputException();
+	}
+	
+	public String placedForOrder(String book_isbn, String emp_id) throws InputException {
+		
 		throw new InputException();
 	}
 }

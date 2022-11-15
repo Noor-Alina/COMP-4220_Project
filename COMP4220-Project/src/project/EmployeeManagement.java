@@ -24,6 +24,9 @@ public class EmployeeManagement extends Throwable{
 	      return str;
 	}
 	
+	/*
+	 * Implementing the function for TestClass5
+	 */
 	public String setHours(int emp_id, String work_date, String starting_time, String ending_time) throws InputException, SQLException, DatabaseException {
 	
 		String outputString ="";
@@ -89,10 +92,16 @@ public class EmployeeManagement extends Throwable{
 		return outputString;
 	}
 
+	/*
+	 * Implementing the InputException for any other combinations of input of TestClass8
+	 */
 	public String setHours(String string, String work_date, String starting_time, String ending_time) throws InputException {
 		throw new InputException();
 	}
 	
+	/*
+	 * Implementing the function for TestClass6
+	 */
 	public ArrayList<String> viewHours() throws SQLException {
 		
 		ArrayList<String> output = new ArrayList<String>();

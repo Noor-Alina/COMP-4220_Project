@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 class TestClass7 {
 
-    SoftwareManagement sm = new SoftwareManagement();
+    BookManagement bm = new BookManagement();
     
     @Test
     void testCase1() throws InputException, DatabaseException {
         
-        assertEquals("Book in stock", sm.search(4672895719));
+        assertEquals("Book in stock", bm.search(1672895710));
     }
     
     @Test
@@ -19,15 +19,9 @@ class TestClass7 {
         
         InputException thrown = assertThrows(
                 InputException.class,
-                   () -> sm.search(2));
+                   () -> bm.search(2));
 
             assertTrue(thrown.getMessage().contains("Invalid Input"));
-    }
-    
-    @Test
-    void testCase3() throws InputException, DatabaseException {
-        
-        assertEquals("Book not in stock", sm.search(467985716));
     }
 
     @Test
@@ -35,7 +29,7 @@ class TestClass7 {
         
         DatabaseException thrown = assertThrows(
                 DatabaseException.class,
-                   () -> sm.search(1234567890));
+                   () -> bm.search(1234567890));
 
             assertTrue(thrown.getMessage().contains("Input Not Found"));
     }

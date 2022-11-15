@@ -2,16 +2,19 @@ package project;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Test;
 
 class TestClass8 {
 
-	SoftwareManagement sm = new SoftwareManagement();
+	BookManagement bm = new BookManagement();
+	
 	
 	@Test
-	void testCase1() throws InputException, DatabaseException{
+	void testCase1() throws InputException, DatabaseException, SQLException{
 		
-		assertEquals("Order made, Order# 56690", sm.order(1672895719, 15561));
+		assertEquals("Book order added to the order inventory", bm.placedForOrder(1672895710, 15561));
 	}
 	
 	@Test
@@ -19,7 +22,7 @@ class TestClass8 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> sm.order(2, "5A7"));
+		           () -> bm.placedForOrder(2, "5A7"));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
@@ -29,7 +32,7 @@ class TestClass8 {
 		
 		DatabaseException thrown = assertThrows(
 				DatabaseException.class,
-		           () -> sm.order(1672235719, 15781));
+		           () -> bm.placedForOrder(1672235719, 15781));
 
 		    assertTrue(thrown.getMessage().contains("Input Not Found"));
 	}
@@ -40,7 +43,7 @@ class TestClass8 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> sm.order(1672235345, 155615));
+		           () -> bm.placedForOrder(1672235345, 155615));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
@@ -51,7 +54,7 @@ class TestClass8 {
 		
 		InputException thrown = assertThrows(
 				InputException.class,
-		           () -> sm.order(167223534567, 15561));
+		           () -> bm.placedForOrder(167223534567l, 15561));
 
 		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
