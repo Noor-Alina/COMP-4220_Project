@@ -140,6 +140,20 @@ public class Home extends JFrame {
 		gbc_reserveBookBtn.gridy = 6;
 		mainMenu.add(reserveBookBtn, gbc_reserveBookBtn);
 		
+		// Update Inventory button
+		JButton updateInvBookBtn = new JButton("Update Inventory");
+		updateInvBookBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UpdateInventory u = new UpdateInventory(emp_id, emp_fname);
+				u.setVisible(true);
+			}
+		});
+		GridBagConstraints gbc_updateInvBookBtn = new GridBagConstraints();
+		gbc_updateInvBookBtn.insets = new Insets(0, 0, 5, 5);
+		gbc_updateInvBookBtn.gridx = 10;
+		gbc_updateInvBookBtn.gridy = 7;
+		mainMenu.add(updateInvBookBtn, gbc_updateInvBookBtn);
+		
 		// employee management button
 		JButton empMngmentBtn = new JButton("Employee Management");
 		empMngmentBtn.addActionListener(new ActionListener() {
