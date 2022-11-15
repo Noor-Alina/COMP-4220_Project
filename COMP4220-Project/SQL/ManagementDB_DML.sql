@@ -37,3 +37,16 @@ INSERT INTO employeeInfo VALUES (79009, 'Victoria', 'Morrison');
 INSERT INTO employeeInfo VALUES (71358, 'Audrey', 'Payne');
 INSERT INTO employeeInfo VALUES (75622, 'Mary', 'Carroll');
 INSERT INTO employeeInfo VALUES (15561, 'Margaret', 'Robin');
+
+# Data Entry for EmpLoginInfo
+INSERT INTO EmpLoginInfo VALUES (11001, 'Sarah', '12345678');
+INSERT INTO EmpLoginInfo VALUES (91879, 'Arthur', 'Q2mNEsXG');
+INSERT INTO EmpLoginInfo VALUES (62312, 'Cathy', 'pbczsDBt');
+INSERT INTO EmpLoginInfo VALUES (62740, 'Adele', 'WvuCWtvp');
+INSERT INTO EmpLoginInfo VALUES (32410, 'Florrie', 'U2JmTqfK');
+INSERT INTO EmpLoginInfo VALUES (20376, 'Carl', 'y7SztQJ3');
+INSERT INTO EmpLoginInfo VALUES (55764, 'Albert', 'tjgVT4Dz');
+INSERT INTO EmpLoginInfo VALUES (79009, 'Vic', 'g9ZJ4KU8');
+INSERT INTO EmpLoginInfo VALUES (71358, 'Audrey', '7RQamsYY');
+INSERT INTO EmpLoginInfo VALUES (75622, 'Mary', 'rdXBgP8k');
+INSERT INTO EmpLoginInfo VALUES (15561, 'Marg', 'HZBX7zhL');

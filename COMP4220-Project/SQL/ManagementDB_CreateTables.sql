@@ -36,6 +36,14 @@ CREATE TABLE EmployeeInfo (
     emp_lname VARCHAR(30)
 );
 
+CREATE TABLE EmpLoginInfo(
+	emp_id INTEGER(5),
+    username VARCHAR(10),
+    password VARCHAR(10),
+    FOREIGN KEY (emp_id) REFERENCES EmployeeInfo(emp_id)
+);
+
+
 CREATE TABLE loanedBooks(
 	reservation_id INTEGER(5) PRIMARY KEY,
     book_isbn INTEGER(10),
