@@ -107,7 +107,6 @@ public class SoftwareManagement extends Throwable{
 	        	
 	        	throw new SQLException();
 	        }
-	        
 		}
 		
 		//User wants to sell a book
@@ -157,18 +156,16 @@ public class SoftwareManagement extends Throwable{
 					
 					System.out.println(em.setHours(emp_id, work_date, starting_time, ending_time));
 					
-				}
-				
-				else {
 					System.out.println("Please enter the Admin ID, 0 to EXIT\n\n");
 					admin_id = Integer.parseInt(in.next());
 				}
-		
-		
-			
+				
+				else {
+					
+					System.out.println("Please enter the Admin ID, 0 to EXIT\n\n");
+					admin_id = Integer.parseInt(in.next());
+				}
 			} 
-			
-		
 		}
 		
 		else if (userIn == 5) {
@@ -191,7 +188,6 @@ public class SoftwareManagement extends Throwable{
 			System.out.println("Please enter the Admin ID, 0 to EXIT\n\n");
 			admin_id = Integer.parseInt(in.next());
 			
-			
 			while (admin_id != 0){
 			
 				if (admin_id == 101) {
@@ -204,26 +200,21 @@ public class SoftwareManagement extends Throwable{
 					
 					System.out.println(bm.placedForOrder(book_isbn, emp_id));
 					
+					System.out.println("Please enter the Admin ID, 0 to EXIT\n\n");
+					admin_id = Integer.parseInt(in.next());
 				}
 				
 				else {
 					System.out.println("Please enter the Admin ID, 0 to EXIT\n\n");
 					admin_id = Integer.parseInt(in.next());
 				}
-		
-		
-			
 			} 
-			
-			System.out.println("EXITING Set Hours\n\n");
-					
+	
+			System.out.println("EXITING Set Hours\n\n");				
 		}
 		
 		System.out.println("Choose one of the options below:\n\n1) Place a specific order\n\n2) Reserve a Book\n\n3) Purchase a Book\n\n4) Set Employee Hours\n\n5) View Today's Employee Working Hours\n\n6) Search for a book\n\n7) Add Book to Order\n\n0)- EXIT");
 		userIn = Integer.parseInt(in.next());	
-		
-		}
-		
+		}	
 	}
-	
 }

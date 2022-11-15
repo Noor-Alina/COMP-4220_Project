@@ -24,6 +24,9 @@ public class BookManagement extends Throwable{
 	      return str;
 	}
 	
+	/*
+	 * Getting the estimated arrival date of a book
+	 */
 	public static String getArrivalDate() {
 		 
 			LocalDate orderDate = LocalDate.now();
@@ -35,6 +38,9 @@ public class BookManagement extends Throwable{
 			return str;
 	}
 	
+	/*
+	 * Setting the reservation book period of in stock book
+	 */
 	public static String getInStockReservationPeriod() {
 		
 		LocalDate reservationDate = LocalDate.now();
@@ -47,6 +53,9 @@ public class BookManagement extends Throwable{
 		return str;
 	}
 	
+	/*
+	 * Setting the reservation book period of out of stock book
+	 */
 	public static String getOutOfStockReservationPeriod() {
 		
 		LocalDate reservationDate = LocalDate.now();
@@ -582,6 +591,9 @@ public class BookManagement extends Throwable{
 		throw new InputException();
 	}
 	
+	/*
+	 * Implementing the function for TestClass7
+	 */
 	public String search(long book_isbn) throws InputException, SQLException, DatabaseException {
 		
 		String outputString ="";
@@ -621,4 +633,11 @@ public class BookManagement extends Throwable{
 		return outputString;
 	}
 	
+	/*
+	 * Implementing the InputException for any other combinations of input of TestClass7
+	 */
+	public String search(String book_isbn) throws InputException{
+		
+		throw new InputException();
+	}
 }
