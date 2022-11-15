@@ -13,7 +13,8 @@ class TestClass3 {
 	@Test
 	void testCase1() throws InputException, DatabaseException, SQLException{
 		
-		assertEquals("Reservation made, Reservation# 56690", bm.reserveOutOfStock(167934082, 1672895719, 15561, "abc12@uwindsor.ca"));
+		assertEquals("Reservation#50002\n\nStudent Number: 167934082\n\nE-mail:abc12@uwindsor.ca\n\nISBN-10: 1672895710\n\nEmployee Number: 15561\n\nDate: '2022-11-14'\n\nYour order will arrive on '2022-11-28'. Your reservation period is '2022-11-28'--'2022-12-05'", bm.reserveOutOfStock(167934082, 1672895710, 15561, "abc12@uwindsor.ca"));
+
 	}
 	
 	@Test

@@ -13,7 +13,7 @@ class TestClass4 {
     @Test
     void testCase1() throws InputException, DatabaseException, SQLException {
         
-        assertEquals("Order#10001\n\nStudent Number: 167934082\n\nISBN-10: 1672895710\n\nEmployee Number: 15561\n\nDate: '2022-11-13'", bm.sell(167934082, 1672895710, 15561, 12345678910111l));
+        assertEquals("Order#10001\n\nStudent Number: 167934082\n\nISBN-10: 1672895710\n\nEmployee Number: 15561\n\nDate: '2022-11-14'", bm.sell(167934082, 1672895710, 15561, 12345678910111l));
     }
     
     @Test
