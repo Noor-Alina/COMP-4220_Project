@@ -11,6 +11,9 @@ DROP TABLE reservedBooks;
 DROP TABLE studentInfo;
 DROP TABLE employeeInfo;
 DROP TABLE bookInfo;
+DROP Table LibraryBookCheck;
+DROP TABLE LibraryRequest;
+
 
 CREATE TABLE StudentInfo (
     student_id INTEGER(9) PRIMARY KEY,
@@ -107,3 +110,23 @@ CREATE TABLE EmployeeManagement (
     ending_time VARCHAR(30),
     FOREIGN KEY (emp_id) REFERENCES EmployeeInfo(emp_id)
 );
+
+CREATE TABLE LibraryBookCheck(
+	id INTEGER(5) PRIMARY KEY AUTO_INCREMENT,
+    book_isbn INTEGER(10),
+    lastloaned_date DATE, 
+    FOREIGN KEY (book_isbn) REFERENCES BookInfo(book_isbn)
+);
+
+
+CREATE TABLE LibraryRequest(
+	id INTEGER(5) PRIMARY KEY AUTO_INCREMENT,
+    book_isbn INTEGER(10),
+    emp_id INTEGER(5),
+    #implement function so that request status defaults to "pending" when a request is added
+    request_status VARCHAR(10) CHECK (request_status = 'Pending' OR request_status = 'Approved' OR request_status = 'Declined'),
+    FOREIGN KEY (emp_id) REFERENCES EmployeeInfo(emp_id),
+    FOREIGN KEY (book_isbn) REFERENCES BookInfo(book_isbn)
+);
+
+
