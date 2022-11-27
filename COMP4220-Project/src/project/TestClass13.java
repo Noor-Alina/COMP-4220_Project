@@ -56,7 +56,7 @@ public class TestClass13 {
 				DatabaseException.class,
 		           () -> bm.addInventory(3334, "2021-06-13"));
 
-		    assertTrue(thrown.getMessage().contains("Input Not Found"));
+		    assertTrue(thrown.getMessage().contains("Invalid Input"));
 	}
 	
 	
