@@ -15,7 +15,7 @@ public class TestClass17 {
     @Test
     void testCase1() throws InputException, DatabaseException, SQLException {
         
-        assertEquals("Book loaned, Loan# 16679", lm.loan(167934082, 1672895710, 15561));
+        assertEquals("Loan#20001\n\nStudent Number: 167934082\n\nISBN-10: 1672895710\n\nEmployee Number: 15561\n\nDate: '2022-11-28'\n\nYour loan period is '2022-11-28'--'2022-12-05'!", lm.loan(167934082, 1672895710, 15561));
     }
     
     @Test
