@@ -13,7 +13,7 @@ class TestClass16 {
     @Test
     void testCase1() throws InputException, DatabaseException, SQLException {
         
-        assertEquals("Book with ISBN  4672895719 hasn’t been loaned within the last 6 months and is available for selling", bm.checkbook(4672895719));
+        assertEquals("Book with ISBN  4672895719 has not been loaned within the last 6 months and is available for selling", bm.checkAvailability(4672895719));
     }
     
     
@@ -22,7 +22,7 @@ class TestClass16 {
         
         InputException thrown = assertThrows(
                 InputException.class,
-                   () -> bm.checkbook(2));
+                   () -> bm.checkAvailability(2));
 
             assertTrue(thrown.getMessage().contains("Invalid Input"));
     }
@@ -32,7 +32,7 @@ class TestClass16 {
         
         DatabaseException thrown = assertThrows(
                 DatabaseException.class,
-                   () -> bm.checkbook(7674887239));
+                   () -> bm.checkAvailability(7674887239));
 
             assertTrue(thrown.getMessage().contains("Input Not Found"));
     }
@@ -40,7 +40,7 @@ class TestClass16 {
     @Test
     void testCase4() throws InputException, DatabaseException, SQLException {
         
-        assertEquals("Book with ISBN 1672235345 has been loaned within the last 6 months and isn’t available for selling", bm.checkbook(1672235345 ));
+        assertEquals("Book with ISBN 1672235345 has been loaned within the last 6 months and is not available for selling", bm.checkAvailability(1672235345));
     }
     
 }
