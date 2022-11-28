@@ -10,6 +10,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;  
+import java.util.Date;
+
+import jdk.javadoc.internal.doclets.toolkit.taglets.ThrowsTaglet;  
 
 public class LibraryManagement extends Throwable{
 	
@@ -51,6 +55,28 @@ public class LibraryManagement extends Throwable{
 		String str = "'" + loanDate + "'" + "--" + "'" +  dueDate + "'";
 		
 		return str;
+	}
+	
+	/*
+	 * Checking if a date is 6 months older than the current date
+	 */
+	public static boolean is6MonthOld(String lastLoanedDate) {
+		
+		LocalDate currentDate = LocalDate.now();
+		LocalDate currentDateMinus6Months = currentDate.minusMonths(6);
+		
+		String[] numberStrings = lastLoanedDate.split("-");
+		LocalDate date1 = LocalDate.of(Integer.parseInt(numberStrings[0]), Integer.parseInt(numberStrings[1]), Integer.parseInt(numberStrings[2]));
+		
+	    if (date1.isBefore(currentDateMinus6Months)){
+	    	
+	    	return true;
+	    }
+	    
+	    else {
+	    	
+	    	return false;
+	    }
 	}
 	
 	public ArrayList<String> viewLibraryRequests() throws SQLException {
@@ -213,4 +239,70 @@ public class LibraryManagement extends Throwable{
 		 
 		throw new InputException();
 	}
+
+	
+	
+	/*
+	 * Implementing the function for TestClass9 and TestClass16
+	 */
+	public String checkAvailability(long book_isbn) throws InputException, DatabaseException, SQLException {
+		
+		String outputString = "";
+		
+		//Checking if the input is valid
+		if(book_isbn > 9999999999l || book_isbn < 1000000001)
+			throw new InputException();
+		
+		//Connecting to MySQL database
+		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
+		Statement lastLoaned = connect.createStatement();
+		String sql = "SELECT lastLoaned_date FROM LibraryBookCheck WHERE book_isbn = " + book_isbn;
+		ResultSet rs = lastLoaned.executeQuery(sql);
+    	
+		//If the book was already loaned, checking the last loaned date
+		if(rs.next()) {
+			
+			if(is6MonthOld(rs.getString(1))){
+				
+				outputString = "Book with ISBN " + book_isbn + " has not been loaned within the last 6 months and is available for selling";
+			}
+			
+			//If the book was loaned within 6 months
+			else {
+				
+				outputString = "Book with ISBN " + book_isbn + " has been loaned within the last 6 months and is not available for selling";
+			}
+			
+		}
+		
+		//If the book was never loaned
+		else {
+			
+			//Check if the book is in our database and being loaned
+			Statement beingLoaned = connect.createStatement();
+			sql = "SELECT loan_stock FROM BookInfo WHERE book_isbn = " + book_isbn + " AND loan_stock > 0";
+			ResultSet rs2 = beingLoaned.executeQuery(sql);
+			
+			if(rs2.next()) {
+				
+				outputString = "Book with ISBN " + book_isbn + " has not been loaned within the last 6 months and is available for selling";
+			}
+			
+			else {
+				
+				throw new DatabaseException();
+			}
+		}
+		
+		return outputString;
+	}
+	
+	/*
+	 * Implementing the InputException for any other combinations of input of TestClass9 and TestClass16
+	 */
+	public String checkAvailability(String book_isbn) throws InputException{
+
+		throw new InputException();
+	}
+	
 }
