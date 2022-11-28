@@ -8,11 +8,11 @@ DROP TABLE soldbooks;
 DROP Table loanedbooks;
 DROP Table orderinventory;
 DROP TABLE reservedBooks;
+DROP Table LibraryBookCheck;
+DROP TABLE LibraryRequest;
 DROP TABLE studentInfo;
 DROP TABLE employeeInfo;
 DROP TABLE bookInfo;
-DROP Table LibraryBookCheck;
-DROP TABLE LibraryRequest;
 
 
 CREATE TABLE StudentInfo (
@@ -40,14 +40,19 @@ CREATE TABLE EmployeeInfo (
 );
 
 CREATE TABLE loanedBooks(
-	reservation_id INTEGER(5) PRIMARY KEY,
+	loan_id INTEGER AUTO_INCREMENT,
+	student_id INTEGER(9),
     book_isbn INTEGER(10),
-    student_id INTEGER(9),
+    emp_id INTEGER(5),
     loaned_date DATE,
     due_date DATE,
+    PRIMARY KEY (loan_id),
     FOREIGN KEY (student_id) REFERENCES StudentInfo(student_id),
-    FOREIGN KEY (book_isbn) REFERENCES BookInfo(book_isbn)
+    FOREIGN KEY (book_isbn) REFERENCES BookInfo(book_isbn),
+    FOREIGN KEY (emp_id) REFERENCES EmployeeInfo(emp_id)
 );
+
+ALTER TABLE loanedBooks AUTO_INCREMENT = 20001;
 
 CREATE TABLE PlacedSpecificOrder(
 	order_id INTEGER AUTO_INCREMENT,
