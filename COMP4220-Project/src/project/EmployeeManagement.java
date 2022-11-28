@@ -105,7 +105,7 @@ public class EmployeeManagement extends Throwable{
 	public ArrayList<String> viewHours() throws SQLException {
 		
 		ArrayList<String> output = new ArrayList<String>();
-		
+		//Connecting to MySQL database
 		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
         Statement exist = connect.createStatement();
         
@@ -129,40 +129,43 @@ public class EmployeeManagement extends Throwable{
 		return output;
 	} 
 	
-	
+	/*
+	 * Implementing the function for TestClass11
+	 */
 	public String createStudent(int student_id, String first_name, String last_name, String email) throws InputException, SQLException, DatabaseException {
 
 		String outputString ="";
 		
-		//Checking if the first three inputs are valid
+		//Checking if student_id is valid
 		if(student_id > 999999999 || student_id < 100000001)
 			throw new InputException();
 		
+		//Checking if first_name and last_name include numbers to throw exception
 		if(first_name.matches(".*[0-9].*") || last_name.matches(".*[0-9].*"))
       		throw new InputException();
 		
+		//Checking if first_name and last_name include special characters to throw exception
 		if(first_name.matches(".*[!@#$%^&*()_+].*") || last_name.matches(".*[!@#$%^&*()_+].*"))
       		throw new InputException();
 		
 		//Checking if the email is valid by checking the email type
 		if(email.length() <= 12 || !email.substring(email.length()-12).equals("@uwindsor.ca"))
 			throw new InputException();
-      	
+		
+		//Connecting to MySQL database
 		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
         Statement exist = connect.createStatement();
         String sql = "INSERT into studentInfo(student_id, first_name, last_name, email) VALUES(" + student_id + ", '" + first_name + "', '" + last_name + "', '" + email + "')";
         int ret = exist.executeUpdate(sql);
         
-      	
         	if(ret == 1) 
         	{
-        		
         		outputString = "Student created";
         	}
+        	
         	//Throwing exception for insertion failure
         	else 
         	{
-       		
         		throw new SQLException();
         	}
         
@@ -176,35 +179,40 @@ public class EmployeeManagement extends Throwable{
 		throw new InputException();
 	}
 	
+	
+	/*
+	 * Implementing the function for TestClass12
+	 */
 	public String createEmployee(int emp_id, String emp_fname, String emp_lname) throws InputException, SQLException {
 
 		String outputString ="";
 		
-		//Checking if the input is valid
+		//Checking if the emp_id is valid
       	if(emp_id > 99999 || emp_id < 10001)
       		throw new InputException();
       	
+        //Checking if emp_fname and emp_lname include numbers to throw exception
       	if(emp_fname.matches(".*[0-9].*") || emp_lname.matches(".*[0-9].*"))
       		throw new InputException();
       	
+        //Checking if emp_fname and emp_lname include special characters to throw exception
       	if(emp_fname.matches(".*[!@#$%^&*()_+].*") || emp_lname.matches(".*[!@#$%^&*()_+].*"))
       		throw new InputException();
       	
+        //Connecting to MySQL database
 		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
         Statement exist = connect.createStatement();
         String sql = "INSERT into employeeInfo(emp_id, emp_fname, emp_lname) VALUES(" + emp_id + ", '" + emp_fname + "', '" + emp_lname + "')";
         int ret = exist.executeUpdate(sql);
         
-      	
     	if(ret == 1) 
     	{
-    		
     		outputString = "Employee created";
     	}
+    	
     	//Throwing exception for insertion failure
     	else 
     	{
-   		
     		throw new SQLException();
     	}
     
