@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 public class trackRequests {
 	@Test
 	void testCase1() throws SQLException {
-		assertEquals("There are no requests at this time", libraryRequests().get(0));
+		assertEquals("There are no requests at this time", viewLibraryRequests().get(0));
 	}
 	
 	@Test
 	void testCase2() throws InputException, DatabaseException, SQLException{
 		createRequest(1,1781616499, 15561);
-		assertEquals("1: 1781616499: 15561: 'Pending' ", libraryRequests.get(0));
+		assertEquals("1: 1781616499: 15561: 'Pending' ", viewLibraryRequests.get(0));
 	}
 
 }

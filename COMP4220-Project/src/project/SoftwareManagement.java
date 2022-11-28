@@ -16,6 +16,7 @@ public class SoftwareManagement extends Throwable{
 		//Adding the BookManagement class variable for using the BookManagement method
 		BookManagement bm = new BookManagement();
 		EmployeeManagement em = new EmployeeManagement(); 
+	    LibraryManagement lm = new LibraryManagement();
 		
 		//Declaring variables for taking user input
 		long student_id;
@@ -31,7 +32,7 @@ public class SoftwareManagement extends Throwable{
         final int adminid = 101;
 		
 		
-		System.out.println("Choose one of the options below:\n\n1) Place a specific order\n\n2) Reserve a Book\n\n3) Purchase a Book\n\n4) Set Employee Hours\n\n5) View Today's Employee Working Hours\n\n6) Search for a book\n\n7) Add Book to Order\n\n0)- EXIT");
+		System.out.println("Choose one of the options below:\n\n1) Place a specific order\n\n2) Reserve a Book\n\n3) Purchase a Book\n\n4) Set Employee Hours\n\n5) View Today's Employee Working Hours\n\n6) Search for a book\n\n7) Add Book to Order\n\n8)View pending library requests\n\n0)- EXIT");
 		Scanner in = new Scanner(System.in);
 		int userIn = Integer.parseInt(in.next());
 		
@@ -212,8 +213,14 @@ public class SoftwareManagement extends Throwable{
 	
 			System.out.println("EXITING Set Hours\n\n");				
 		}
+
+		//to view library request
+		else if (userIn == 8) {
+			
+			System.out.println(lm.viewLibraryRequests());
+		}
 		
-		System.out.println("Choose one of the options below:\n\n1) Place a specific order\n\n2) Reserve a Book\n\n3) Purchase a Book\n\n4) Set Employee Hours\n\n5) View Today's Employee Working Hours\n\n6) Search for a book\n\n7) Add Book to Order\n\n0)- EXIT");
+		System.out.println("Choose one of the options below:\n\n1) Place a specific order\n\n2) Reserve a Book\n\n3) Purchase a Book\n\n4) Set Employee Hours\n\n5) View Today's Employee Working Hours\n\n6) Search for a book\n\n7) Add Book to Order\n\n8)View pending library requests\n\n0)- EXIT");
 		userIn = Integer.parseInt(in.next());	
 		}	
 	}
