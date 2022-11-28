@@ -21,7 +21,7 @@ class TestClass12 {
         
         InputException thrown = assertThrows(
                 InputException.class,
-                   () -> em.createEmployee(5A7, "Jen", "Tiger"));
+                   () -> em.createEmployee(567, "Jen", "Tiger"));
 
             assertTrue(thrown.getMessage().contains("Invalid Input"));
     }
@@ -39,8 +39,8 @@ class TestClass12 {
     @Test
     void testCase4(){
         
-        DatabaseException thrown = assertThrows(
-                DatabaseException.class,
+        InputException thrown = assertThrows(
+                InputException.class,
                    () -> em.createEmployee(13245, "Jen", "Tige9r"));
 
             assertTrue(thrown.getMessage().contains("Invalid Input"));

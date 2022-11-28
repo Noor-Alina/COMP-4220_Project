@@ -128,4 +128,93 @@ public class EmployeeManagement extends Throwable{
         	output.add("No one is working today");
 		return output;
 	} 
+	
+	
+	public String createStudent(int student_id, String first_name, String last_name, String email) throws InputException, SQLException, DatabaseException {
+
+		String outputString ="";
+		
+		//Checking if the first three inputs are valid
+		if(student_id > 999999999 || student_id < 100000001)
+			throw new InputException();
+		
+		if(first_name.matches(".*[0-9].*") || last_name.matches(".*[0-9].*"))
+      		throw new InputException();
+		
+		if(first_name.matches(".*[!@#$%^&*()_+].*") || last_name.matches(".*[!@#$%^&*()_+].*"))
+      		throw new InputException();
+		
+		//Checking if the email is valid by checking the email type
+		if(email.length() <= 12 || !email.substring(email.length()-12).equals("@uwindsor.ca"))
+			throw new InputException();
+      	
+		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
+        Statement exist = connect.createStatement();
+        String sql = "INSERT into studentInfo(student_id, first_name, last_name, email) VALUES(" + student_id + ", '" + first_name + "', '" + last_name + "', '" + email + "')";
+        int ret = exist.executeUpdate(sql);
+        
+      	
+        	if(ret == 1) 
+        	{
+        		
+        		outputString = "Student created";
+        	}
+        	//Throwing exception for insertion failure
+        	else 
+        	{
+       		
+        		throw new SQLException();
+        	}
+        
+		return outputString;
+	}
+
+	/*
+	 * Implementing the InputException for any other combinations of input of TestClass11
+	 */
+	public Object createStudent(String string, String first_name, String last_name, String email) throws InputException{
+		throw new InputException();
+	}
+	
+	public String createEmployee(int emp_id, String emp_fname, String emp_lname) throws InputException, SQLException {
+
+		String outputString ="";
+		
+		//Checking if the input is valid
+      	if(emp_id > 99999 || emp_id < 10001)
+      		throw new InputException();
+      	
+      	if(emp_fname.matches(".*[0-9].*") || emp_lname.matches(".*[0-9].*"))
+      		throw new InputException();
+      	
+      	if(emp_fname.matches(".*[!@#$%^&*()_+].*") || emp_lname.matches(".*[!@#$%^&*()_+].*"))
+      		throw new InputException();
+      	
+		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
+        Statement exist = connect.createStatement();
+        String sql = "INSERT into employeeInfo(emp_id, emp_fname, emp_lname) VALUES(" + emp_id + ", '" + emp_fname + "', '" + emp_lname + "')";
+        int ret = exist.executeUpdate(sql);
+        
+      	
+    	if(ret == 1) 
+    	{
+    		
+    		outputString = "Employee created";
+    	}
+    	//Throwing exception for insertion failure
+    	else 
+    	{
+   		
+    		throw new SQLException();
+    	}
+    
+    	return outputString;
+	}
+	
+	/*
+	 * Implementing the InputException for any other combinations of input of TestClass12
+	 */
+	public Object createEmployee(String string, String emp_fname, String emp_lname) throws InputException {
+		throw new InputException();
+	}
 }
