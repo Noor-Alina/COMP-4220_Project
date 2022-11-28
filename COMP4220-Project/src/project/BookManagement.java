@@ -9,8 +9,6 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
-//import jdk.javadoc.internal.doclets.toolkit.taglets.ThrowsTaglet;
-
 public class BookManagement extends Throwable{
 	
 	/*
