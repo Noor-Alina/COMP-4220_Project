@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-public class CheckAvailability {
+public class TestClass9 {
 	
 	@Test
 	void testCase1() throws InputException, DatabaseException, SQLException{
