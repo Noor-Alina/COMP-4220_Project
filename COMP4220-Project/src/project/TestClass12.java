@@ -21,7 +21,7 @@ class TestClass12 {
         
         InputException thrown = assertThrows(
                 InputException.class,
-                   () -> em.createEmployee(567, "Jen", "Tiger"));
+                   () -> em.createEmployee("5A7", "Jen", "Tiger"));
 
             assertTrue(thrown.getMessage().contains("Invalid Input"));
     }
