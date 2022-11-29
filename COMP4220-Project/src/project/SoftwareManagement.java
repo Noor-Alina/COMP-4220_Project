@@ -15,9 +15,21 @@ public class SoftwareManagement extends Throwable{
 		
 		//Adding the BookManagement class variable for using the BookManagement method
 		BookManagement bm = new BookManagement();
+<<<<<<< Updated upstream
 		EmployeeManagement em = new EmployeeManagement(); 
 	    LibraryManagement lm = new LibraryManagement();
+=======
+		//EmployeeManagement em = new EmployeeManagement(); 
+
+		System.out.println(bm.addInventory(1672895710));
+
 		
+		
+>>>>>>> Stashed changes
+		
+		/*
+		 * 
+		 
 		//Declaring variables for taking user input
 		long student_id;
         long book_isbn;
@@ -224,4 +236,6 @@ public class SoftwareManagement extends Throwable{
 		userIn = Integer.parseInt(in.next());	
 		}	
 	}
+	*/
+}
 }

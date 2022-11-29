@@ -591,6 +591,94 @@ public class BookManagement extends Throwable{
 		throw new InputException();
 	}
 	
+	
+	/*
+	 * Implementing function for Test Class 13
+	 */
+	public String addInventory(long book_isbn) throws InputException, SQLException, DatabaseException {
+		
+		String outputString ="";
+		
+		//Checking if the inputs are valid
+		if(book_isbn > 9999999999l || book_isbn < 1000000001)
+			throw new InputException();
+		
+		//Connecting to MySQL database
+		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
+		Statement exist = connect.createStatement();
+		String sql = "SELECT book_isbn, arrival_date FROM orderInventory WHERE book_isbn = "+ book_isbn + " AND EXISTS (SELECT book_isbn from bookInfo WHERE book_isbn = "+ book_isbn + ")";
+
+		ResultSet rs = exist.executeQuery(sql);
+		        
+		//If the first two inputs exist in the database, inserting into the orderInventory database
+		if(rs.next()) {
+			
+			//retrieving arrival date from orderInventory table for the ISBN of interest
+			java.sql.Date arrival_date = rs.getDate(2);
+			
+			//print test
+			System.out.println("arrival_date = " + arrival_date);
+			
+			//converting sql date to localDate
+			LocalDate book_arrivaldate = arrival_date.toLocalDate();
+			
+			//print test
+			//System.out.println("Book_arrivaldate = " + book_arrivaldate);
+			
+			LocalDate CurrentDate = LocalDate.now();
+			//printing current date
+			System.out.println("Today's date = "+CurrentDate);
+			
+			
+			if (CurrentDate == book_arrivaldate) {
+				
+				//Add the details
+	        	Statement addInventory = connect.createStatement();
+	        	int default_quantity = 10;
+	        	sql = "UPDATE BookInfo SET sell_stock = "+default_quantity +"WHERE book_isbn = "+book_isbn+")";
+	        	int ret2 = addInventory.executeUpdate(sql);
+	        	
+	        	//Successfully updated sell stock
+	        	if(ret2 == 1) 
+	        	{
+	        		
+	        		outputString = "Book ISBN# "+book_isbn+" Added to Inventory";
+	        	}
+	        	
+	        	//Outputting the insertion failure prompt
+	        	else {
+	        		
+	        		throw new SQLException();
+	        	}
+	        	
+			}
+			
+			else {
+				
+				outputString = "The book with ISBN "+book_isbn+ " has not arrived yet";
+			}
+			
+		}
+		
+		else {
+			
+			throw new DatabaseException();
+		}
+		
+		
+		return outputString;
+	}
+	
+	/*
+	 * Implementing the InputException for any other combinations of input of TestClass13
+	 */
+	public String addInventory(String book_isbn) throws InputException {
+		
+		throw new InputException();
+	}
+	
+	
+	
 	/*
 	 * Implementing the function for TestClass7
 	 */
