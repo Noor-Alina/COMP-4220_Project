@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestClass11" project="COMP4220-Project" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="project.TestClass11" time="0.511" displayname="TestClass11" uniqueid="[engine:junit-jupiter]/[class:project.TestClass11]">
+    <testcase name="testCase1" classname="project.TestClass11" time="0.5" displayname="testCase1()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass11]/[method:testCase1()]"/>
+    <testcase name="testCase2" classname="project.TestClass11" time="0.001" displayname="testCase2()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass11]/[method:testCase2()]"/>
+    <testcase name="testCase3" classname="project.TestClass11" time="0.0" displayname="testCase3()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass11]/[method:testCase3()]"/>
+    <testcase name="testCase4" classname="project.TestClass11" time="0.002" displayname="testCase4()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass11]/[method:testCase4()]"/>
+    <testcase name="testCase5" classname="project.TestClass11" time="0.002" displayname="testCase5()" uniqueid="[engine:junit-jupiter]/[class:project.TestClass11]/[method:testCase5()]"/>
+  </testsuite>
+</testrun>
