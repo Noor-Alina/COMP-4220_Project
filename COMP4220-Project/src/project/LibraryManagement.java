@@ -93,7 +93,7 @@ public class LibraryManagement extends Throwable{
         
         while(rs.next()) {
         	String recordstatus = "";
-        	for (int i = 1; i <= 4; i++) {
+        	for (int i = 1; i <= 3; i++) {
         		recordstatus += rs.getString(i) + " ";      		
         	}
         	output.add(recordstatus);

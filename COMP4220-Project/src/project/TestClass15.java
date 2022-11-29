@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-class TestClass8 {
+class TestClass15 {
 
 	BookManagement bm = new BookManagement();
 	

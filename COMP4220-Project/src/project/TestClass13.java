@@ -14,8 +14,8 @@ public class TestClass13 {
 	
 	@Test
 	void testCase2() throws InputException, DatabaseException, SQLException{
-		createRequest(1,1781616499, 15561);
-		assertEquals("1: 1781616499: 15561: 'Pending' ", viewLibraryRequests.get(0));
+		createRequest(1,1781616499);
+		assertEquals("1: 1781616499: 'Pending' ", viewLibraryRequests.get(0));
 	}
 
 }
