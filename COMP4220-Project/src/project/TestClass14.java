@@ -16,7 +16,7 @@ public class TestClass14 {
 	@Test
 	void testCase1() throws InputException, DatabaseException, SQLException{
 		
-		assertEquals("Book ISBN# 4672895719 Added to Inventory", bm.addInventory(4672895719));
+		assertEquals("Book ISBN# 1672895710 Added to Inventory", bm.addInventory(1672895710));
 	}
 	
 	@Test
@@ -36,12 +36,12 @@ public class TestClass14 {
 				DatabaseException.class,
 		           () -> bm.addInventory(1234567890));
 
-		    assertTrue(thrown.getMessage().contains("Book ISBN# 1234567890 is not valid"));
+		    assertTrue(thrown.getMessage().contains("Input Not Found"));
 	}
 	
 	@Test
-	void testCase4(){
+	void testCase4() throws InputException, DatabaseException, SQLException{
 		
-		assertEquals("The book ISBN 1672895710 has not arrived yet", bm.addInventory(1672895710));
+		assertEquals("The book with ISBN 1780735211 has not arrived yet", bm.addInventory(1780735211));
 	}
 }
