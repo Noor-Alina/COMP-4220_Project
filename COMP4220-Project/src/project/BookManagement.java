@@ -9,10 +9,26 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
-import sun.security.mscapi.CKeyPairGenerator.RSA;
 
 public class BookManagement extends Throwable{
 	
+	
+	/*
+	 * 
+	 */
+	
+	public static boolean verifyDate(LocalDate arrivalDate) {
+		
+		 LocalDate currentDate = LocalDate.now();
+		 
+		
+		 if (currentDate.equals(arrivalDate)) {
+			 
+			 return true;
+		 }
+		 
+		 return false;
+	}
 	/*
 	 * Getting the current date
 	 */
@@ -616,26 +632,16 @@ public class BookManagement extends Throwable{
 			//retrieving arrival date from orderInventory table for the ISBN of interest
 			java.sql.Date arrival_date = rs.getDate(2);
 			
-			//print test
-			System.out.println("arrival_date = " + arrival_date);
-			
 			//converting sql date to localDate
 			LocalDate book_arrivaldate = arrival_date.toLocalDate();
 			
-			//print test
-			//System.out.println("Book_arrivaldate = " + book_arrivaldate);
-			
-			LocalDate CurrentDate = LocalDate.now();
-			//printing current date
-			System.out.println("Today's date = "+CurrentDate);
-			
-			
-			if (CurrentDate == book_arrivaldate) {
+
+			if (verifyDate(book_arrivaldate)) {
 				
 				//Add the details
 	        	Statement addInventory = connect.createStatement();
 	        	int default_quantity = 10;
-	        	sql = "UPDATE BookInfo SET sell_stock = "+default_quantity +"WHERE book_isbn = "+book_isbn+")";
+	        	sql = "UPDATE BookInfo SET sell_stock = "+default_quantity +" WHERE book_isbn = "+book_isbn;
 	        	int ret2 = addInventory.executeUpdate(sql);
 	        	
 	        	//Successfully updated sell stock
