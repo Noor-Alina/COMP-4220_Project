@@ -27,12 +27,15 @@ public class SoftwareManagement extends Throwable{
         String work_date;
         String starting_time;
         String ending_time;
+        String fname;
+        String lname;
         int admin_id;
         
         final int adminid = 101;
+        final int lbadminid = 100;
 		
 		
-		System.out.println("Choose one of the options below:\n\n1) Place a specific order\n\n2) Reserve a Book\n\n3) Purchase a Book\n\n4) Set Employee Hours\n\n5) View Today's Employee Working Hours\n\n6) Search for a book\n\n7) Add Book to Order\n\n8)View pending library requests\n\n0)- EXIT");
+		System.out.println("Choose one of the options below:\n\n1) Place a specific order\n\n2) Reserve a Book\n\n3) Purchase a Book\n\n4) Set Employee Hours\n\n5) View Today's Employee Working Hours\n\n6) Search for a book\n\n7) Add Book to Order\n\n8)Library - loan book\n\n9)BookStore - Check Library Book Availability\n\n10)Bookstore - Make a request for a Library Book\n\n11)Library - View Bookstore requests\n\n12)add Employee\n\n0)- EXIT");
 		Scanner in = new Scanner(System.in);
 		int userIn = Integer.parseInt(in.next());
 		
@@ -213,12 +216,89 @@ public class SoftwareManagement extends Throwable{
 	
 			System.out.println("EXITING Set Hours\n\n");				
 		}
-
-		//to view library request
+		
 		else if (userIn == 8) {
 			
-			System.out.println(lm.viewLibraryRequests());
+			//Taking the student number of the student
+			System.out.println("Please enter the student number of the student\n\n");
+			student_id = Long.parseLong(in.next());
+			
+			//Taking the book_isbn of the book
+			System.out.println("Please enter the ISBN-10 of the book\n\n");
+			book_isbn = Long.parseLong(in.next());
+			
+			//Taking the employee number of the employee
+			System.out.println("Please enter the employee number of the employee\n\n");
+			emp_id = Integer.parseInt(in.next());
+			
+	
+			System.out.println(lm.loan(student_id, book_isbn, emp_id));
+			
 		}
+		
+		
+		else if (userIn == 9) {
+			
+					System.out.println("Please enter the ISBN-10 of the book\n\n");
+					book_isbn = Long.parseLong(in.next());
+					
+					System.out.println(lm.checkAvailability(book_isbn));
+					
+		}
+		
+		else if (userIn == 10) {
+			
+			System.out.println("Please enter the ISBN-10 of the book\n\n");
+			book_isbn = Long.parseLong(in.next());
+			
+			System.out.println(bm.requestBook(book_isbn));
+			
+		}
+		
+		else if (userIn == 11) {
+			
+			System.out.println(lm.viewLibraryRequests());			
+		}
+		
+		else if (userIn == 12) {
+			
+
+			System.out.println("Please enter the employee ID\n\n");
+			emp_id = Integer.parseInt(in.next());
+			
+			System.out.println("Please enter the employees first name\n\n");
+			fname = in.next();
+			
+			System.out.println("Please enter the employees last name\n\n");
+			lname = in.next();
+			
+			System.out.println(em.createEmployee(emp_id, fname, lname));			
+
+			
+		}
+		
+		else if (userIn == 13) {
+			
+
+			System.out.println("Please enter the student ID\n\n");
+			student_id = Long.parseLong(in.next());
+			
+			System.out.println("Please enter the students first name\n\n");
+			fname = in.next();
+			
+			System.out.println("Please enter the students last name\n\n");
+			lname = in.next();
+			
+			System.out.println("Please enter the students email\n\n");
+			email = in.next();
+			
+			
+			System.out.println(em.createStudent(student_id, fname, lname, email));			
+
+		}
+		
+		
+
 		
 		System.out.println("Choose one of the options below:\n\n1) Place a specific order\n\n2) Reserve a Book\n\n3) Purchase a Book\n\n4) Set Employee Hours\n\n5) View Today's Employee Working Hours\n\n6) Search for a book\n\n7) Add Book to Order\n\n8)View pending library requests\n\n0)- EXIT");
 		userIn = Integer.parseInt(in.next());	
