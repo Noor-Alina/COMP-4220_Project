@@ -38,4 +38,10 @@ public class TestClass14 {
 
 		    assertTrue(thrown.getMessage().contains("Book ISBN# 1234567890 is not valid"));
 	}
+	
+	@Test
+	void testCase4(){
+		
+		assertEquals("The book ISBN 1672895710 has not arrived yet", bm.addInventory(1672895710));
+	}
 }
