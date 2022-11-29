@@ -126,7 +126,6 @@ CREATE TABLE LibraryBookCheck(
 CREATE TABLE LibraryRequest(
 	id INTEGER(5) PRIMARY KEY AUTO_INCREMENT,
     book_isbn INTEGER(10),
-    #implement function so that request status defaults to "pending" when a request is added
     request_status VARCHAR(10) CHECK (request_status = 'Pending' OR request_status = 'Approved' OR request_status = 'Declined'),
     FOREIGN KEY (book_isbn) REFERENCES BookInfo(book_isbn)
 );
