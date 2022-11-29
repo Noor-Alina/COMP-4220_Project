@@ -132,7 +132,7 @@ public class EmployeeManagement extends Throwable{
 	/*
 	 * Implementing the function for TestClass11
 	 */
-	public String createStudent(int student_id, String first_name, String last_name, String email) throws InputException, SQLException, DatabaseException {
+	public String createStudent(long student_id, String first_name, String last_name, String email) throws InputException, SQLException, DatabaseException {
 
 		String outputString ="";
 		
