@@ -790,4 +790,67 @@ public class BookManagement extends Throwable{
 		
 		return outputString;
 	}
+
+	/*
+	 * Implementing function for Test Class 15
+	 */
+	public String courseBook(int book_code, int quantity) throws InputException, SQLException, DatabaseException {
+		
+		String outputString ="";
+		
+		//Checking if the inputs are valid
+		if(book_code < 10000 || book_code > 99999)
+			throw new InputException();
+		
+		if(quantity < 1 || quantity > 100)
+			throw new InputException();
+		
+		//Connecting to MySQL database
+		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
+		Statement exist = connect.createStatement();
+		String sql = "SELECT book_code FROM CoursebookInfo WHERE book_code = "+ book_code + " AND EXISTS (SELECT book_code from CoursebookInfo WHERE book_code = "+ book_code + ")";
+
+		ResultSet rs = exist.executeQuery(sql);
+		        
+		if(rs.next()) {
+			
+				
+			//Add the details
+        	Statement addInventory = connect.createStatement();
+        	sql = "UPDATE CoursebookInfo SET stock = stock + "+quantity +" WHERE book_code = "+book_code;
+        	int ret2 = addInventory.executeUpdate(sql);
+        	
+        	//Successfully updated sell stock
+        	if(ret2 == 1) 
+        	{
+        		
+        		outputString = "Coursebook order added to the order inventory";
+        	}
+        	
+        	//Outputting the insertion failure prompt
+        	else {
+        		
+        		throw new SQLException();
+        	}
+        	
+		}
+
+		return outputString;
+	}
+	
+	/*
+	 * Implementing the InputException for any other combinations of input of TestClass15
+	 */
+	public String courseBook(String book_code, int quantity) throws InputException {
+		throw new InputException();
+	}
+	public String courseBook(int book_code, String quantity) throws InputException {			
+		throw new InputException();
+	}
+
+	public String courseBook(String book_code, String quantity) throws InputException {
+		throw new InputException();
+	}
+
+
 }

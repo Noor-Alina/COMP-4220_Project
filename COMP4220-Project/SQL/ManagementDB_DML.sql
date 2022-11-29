@@ -37,3 +37,12 @@ INSERT INTO employeeInfo VALUES (79009, 'Victoria', 'Morrison');
 INSERT INTO employeeInfo VALUES (71358, 'Audrey', 'Payne');
 INSERT INTO employeeInfo VALUES (75622, 'Mary', 'Carroll');
 INSERT INTO employeeInfo VALUES (15561, 'Margaret', 'Robin');
+
+# Data Entry for CoursebookInfo
+INSERT INTO CoursebookInfo VALUES (12345, 22334, 45);
+INSERT INTO CoursebookInfo VALUES (54321, 45566, 5);
+INSERT INTO CoursebookInfo VALUES (98765, 67392, 0);
+INSERT INTO CoursebookInfo VALUES (29798, 45435, 6);
+INSERT INTO CoursebookInfo VALUES (34634, 36743, 99);
+INSERT INTO CoursebookInfo VALUES (45438, 48532, 150);
+INSERT INTO CoursebookInfo VALUES (34349, 97393, 76);

@@ -130,4 +130,9 @@ CREATE TABLE LibraryRequest(
     FOREIGN KEY (book_isbn) REFERENCES BookInfo(book_isbn)
 );
 
+CREATE TABLE CoursebookInfo (
+	book_code INTEGER(5) PRIMARY KEY,
+    course_code INTEGER(5),
+    stock INTEGER(3)
+);
 
