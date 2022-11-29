@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
+import sun.security.mscapi.CKeyPairGenerator.RSA;
+
 public class BookManagement extends Throwable{
 	
 	/*
@@ -607,7 +609,7 @@ public class BookManagement extends Throwable{
 
 		ResultSet rs = exist.executeQuery(sql);
 		        
-		//If the first two inputs exist in the database, inserting into the orderInventory database
+		//If the input exist in the database, inserting into the orderInventory database
 		 
         while(rs.next()) {
         	
@@ -637,5 +639,52 @@ public class BookManagement extends Throwable{
 	public String search(String book_isbn) throws InputException{
 		
 		throw new InputException();
+	}
+	
+	/*
+	 * Implementing the function for TestClass10
+	 */
+	public String requestBook(long book_isbn) throws InputException, SQLException, DatabaseException{
+		
+		String outputString ="";
+		
+		//Checking if the inputs are valid
+		if(book_isbn > 9999999999l || book_isbn < 1000000001)
+			throw new InputException();
+		
+		//Connecting to MySQL database
+		Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/bookmanagement", "guest", "guest123");
+		Statement exist = connect.createStatement();
+		String sql = "SELECT * FROM bookInfo WHERE book_isbn = "+ book_isbn;
+		ResultSet rs = exist.executeQuery(sql);
+		
+		//Book is available in the database, so it can be requested
+		if(rs.next()) {
+			
+			//Inserting the data into LibraryRequest
+        	Statement insert = connect.createStatement();
+        	sql = "INSERT into LibraryRequest (book_isbn, request_status)VALUES (" + book_isbn +  ", 'Pending')";
+        	int ret = insert.executeUpdate(sql);
+			
+        	//Outputting the insertion success prompt
+        	if(ret == 1) 
+        	{
+        		
+        		outputString = "Book requested";
+        	}
+        	
+        	//Outputting the insertion failure prompt
+        	else {
+        		
+        		throw new SQLException();
+        	}
+		}
+		
+		else {
+			
+			throw new DatabaseException();
+		}
+		
+		return outputString;
 	}
 }
