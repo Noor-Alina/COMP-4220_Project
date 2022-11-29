@@ -29,7 +29,7 @@ class TestClass15 {
 
 
     @Test
-    void testCase4(){
+    void testCase3(){
 
         InputException thrown = assertThrows(
                 InputException.class,
