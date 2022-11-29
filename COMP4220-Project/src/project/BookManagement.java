@@ -656,6 +656,15 @@ public class BookManagement extends Throwable{
 	        		
 	        		throw new SQLException();
 	        	}
+
+				// add book to libraryRequests
+				sql = "INSERT INTO LibraryRequest VALUES (NULL," + book_isbn +", 'Pending')";
+	        	int ret3 = addInventory.executeUpdate(sql);
+	        	
+	        	if(ret3 != 1) 
+	        	{	
+	        		throw new SQLException();
+	        	}
 	        	
 			}
 			

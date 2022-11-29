@@ -8,15 +8,18 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
 
 public class TestClass13 {
+	 LibraryManagement lm = new LibraryManagement();
+	 BookManagement bm = new BookManagement();
+	 
 	@Test
 	void testCase1() throws SQLException {
-		assertEquals("There are no requests at this time", viewLibraryRequests().get(0));
+		assertEquals("There are no requests at this time", lm.viewLibraryRequests().get(0));
 	}
 	
 	@Test
 	void testCase2() throws InputException, DatabaseException, SQLException{
-		createRequest(1,1781616499);
-		assertEquals("1: 1781616499: 'Pending' ", viewLibraryRequests.get(0));
+		bm.addInventory(1672895710);
+		assertEquals("1 1672895710 Pending ", lm.viewLibraryRequests().get(0));
 	}
 
 }
